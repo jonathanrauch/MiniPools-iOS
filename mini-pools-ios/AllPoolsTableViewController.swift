@@ -31,7 +31,10 @@ class AllPoolsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllPoolsCell", for: indexPath)
         
         cell.textLabel?.text = pools_hardcoded[indexPath.row]
-        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+
         return cell
     }
 

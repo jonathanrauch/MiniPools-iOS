@@ -12,11 +12,19 @@ class AllPoolsTableViewController: UITableViewController {
 
     @IBOutlet weak var poolsTableView: UITableView!
     
-    let pools_hardcoded = ["pool1", "pool2", "pool3", "pool4", "pool5"]
+    var allPools : [PoolModel] = [] {
+        didSet {
+            poolsTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        
+        PoolsWorker.fetchPools { allPools in
+            self.allPools = allPools
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -24,7 +32,7 @@ class AllPoolsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pools_hardcoded.count
+        return allPools.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -34,7 +42,7 @@ class AllPoolsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllPoolsCell", for: indexPath)
         
-        cell.textLabel?.text = pools_hardcoded[indexPath.row]
+        cell.textLabel?.text = allPools[indexPath.row].name
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero

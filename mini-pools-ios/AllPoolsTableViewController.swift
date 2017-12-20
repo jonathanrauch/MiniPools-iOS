@@ -16,6 +16,7 @@ class AllPoolsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

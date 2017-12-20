@@ -59,6 +59,14 @@ class AllPoolsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UITableViewCell {
+            let indexPath = self.tableView.indexPath(for: cell)!
+            let poolViewController = segue.destination as! PoolViewController
+            poolViewController.pool = self.allPools[indexPath.row]
+        }
+    }
 
 }
 

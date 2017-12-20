@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Extensions.swift
 //  mini-pools-ios
 //
 //  Created by Kaplún, Sebi on 12/20/17.
@@ -7,6 +7,21 @@
 //
 
 import Foundation
+
+extension Date {
+    func shortDate() -> String {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "MMM d, yyyy"
+        return dateformatter.string(from: self)
+    }
+}
+
+extension String {
+    func getSymbolForCurrencyCode() -> String {
+        let locale = NSLocale(localeIdentifier: self)
+        return locale.displayName(forKey: NSLocale.Key.currencySymbol, value: self) ?? self
+    }
+}
 
 class DateUtil {
     static func initDate(string : String) -> Date? {

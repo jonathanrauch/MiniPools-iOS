@@ -33,6 +33,9 @@
                             <outlet property="delegate" destination="8Nx-85-eFh" id="1p0-bX-Vtb"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="poolsTableView" destination="gME-xH-VPz" id="3OY-N1-BNP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGt-td-1fI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

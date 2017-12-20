@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+class DateUtil {
+    static func initDate(string : String) -> Date? {
+        let dateFor: DateFormatter = DateFormatter()
+        dateFor.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        return dateFor.date(from: string)
+    }
+}

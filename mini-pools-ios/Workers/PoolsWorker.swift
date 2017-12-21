@@ -10,12 +10,9 @@ import Alamofire
 import SwiftyJSON
 
 class PoolsWorker {
-    
-    static let BASE_SERVER = "https://mini-pools.herokuapp.com"
-    static let FETCH_POOLS_URL = "/pools"
 
     static func fetchPools(completion: @escaping ([PoolModel]) -> Void) {
-        Alamofire.request("\(BASE_SERVER)\(FETCH_POOLS_URL)").responseJSON { response in
+        Alamofire.request("\(API.BaseServerUrl)\(API.AllPools)").responseJSON { response in
             var pools : [PoolModel] = []
             if let responseResult = response.result.value {
                 let json = JSON(responseResult)

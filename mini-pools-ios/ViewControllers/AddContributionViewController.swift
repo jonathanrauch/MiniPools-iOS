@@ -54,9 +54,8 @@ class AddContributionViewController: UIViewController {
         if let amountString = amountField.text, amountString.count > 0, let poolId = poolId {
             let amount = Int(amountString)!
             delegate?.addContribution(poolId: poolId,contributor: users[pickerView.selectedRow(inComponent: 0)], note: note, amount: amount)
-            
         } else {
-            //TODO: show error
+            fatalError()
         }
         dismiss(animated: true, completion: nil)
     }

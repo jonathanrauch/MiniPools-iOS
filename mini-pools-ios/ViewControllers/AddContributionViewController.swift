@@ -87,7 +87,7 @@ extension AddContributionViewController : UITextFieldDelegate {
         if (string.count == 0) { return true }
         
         if (textField == amountField) {
-            let cs = CharacterSet(charactersIn:"0123456789.")
+            let cs = CharacterSet(charactersIn:"0123456789")
             let filtered = string.components(separatedBy: cs).filter {  !$0.isEmpty }
             let str = filtered.joined(separator: "")
             

@@ -37,10 +37,6 @@ class AddContributionViewController: UIViewController {
     
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     @objc func keyboardWillShow(notification: NSNotification) {
             self.view.frame.origin.y = -50
     }

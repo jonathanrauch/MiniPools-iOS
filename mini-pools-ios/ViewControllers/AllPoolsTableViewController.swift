@@ -24,8 +24,6 @@ class AllPoolsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        
         PoolsWorker.fetchPools { allPools in
             self.allPools = allPools
         }
@@ -43,10 +41,6 @@ class AllPoolsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allPools.count
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Mini Pools"
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

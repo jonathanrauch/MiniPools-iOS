@@ -21,14 +21,14 @@ class AllPoolsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        
-        PoolsWorker.fetchPools { allPools in
-            self.allPools = allPools
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        PoolsWorker.fetchPools { allPools in
+            self.allPools = allPools
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

@@ -6,8 +6,16 @@
 //  Copyright © 2017 Kaplún, Sebi. All rights reserved.
 //
 
-enum API : String {
-    case BaseServerUrl = "https://mini-pools.herokuapp.com"
-    case AllUsers = "/users"
-    case AllPools = "/pools"
+struct API {
+    static let baseServerUrl = "https://mini-pools.herokuapp.com"
+    static let allUsers = "/users"
+    static let allPools = "/pools"
+    static let contributions = "/contributions"
+    
+    struct Parameters {
+        static let amountValue = "amountValue"
+        static let amountCurrency = "amountCurrency"
+        static let note = "note"
+        static let contributorId = "contributorId"
+    }
 }

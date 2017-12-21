@@ -12,7 +12,7 @@ import SwiftyJSON
 class UsersWorker {
     
     static func fetchUsers(completion: @escaping ([PersonModel]) -> Void) {
-        Alamofire.request("\(API.BaseServerUrl)\(API.AllUsers)").responseJSON { response in
+        Alamofire.request("\(API.baseServerUrl)\(API.allUsers)").responseJSON { response in
             var users : [PersonModel] = []
             if let responseResult = response.result.value {
                 let json = JSON(responseResult)

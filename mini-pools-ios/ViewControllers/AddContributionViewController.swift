@@ -10,17 +10,22 @@ import UIKit
 
 class AddContributionViewController: UIViewController {
 
-    var pickOption = ["one", "two", "three", "seven", "fifteen"]
-
+    var users : [PersonModel] = []
+    var poolId : Int?
+    weak var delegate : AddContributionDelegate?
+    let pickerView = UIPickerView()
+    
     @IBOutlet weak var pickerTextField: UITextField!
+    @IBOutlet weak var amountField: UITextField!
+    @IBOutlet weak var noteField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let pickerView = UIPickerView()
         pickerView.delegate = self
-        
+        amountField.delegate = self
+
         pickerTextField.inputView = pickerView
-        pickerTextField.text = pickOption[0]
+        pickerTextField.text = users[0].name
         
         NotificationCenter.default.addObserver(self, selector: #selector(AddContributionViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AddContributionViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -29,7 +34,6 @@ class AddContributionViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -43,6 +47,18 @@ class AddContributionViewController: UIViewController {
     @IBAction func dismiss(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func contributePressed(_ sender: Any) {
+        let note = noteField.text
+        if let amountString = amountField.text, amountString.count > 0 {
+            let amount = Int(amountString)!
+            delegate?.addContribution(poolId: poolId!,contributor: users[pickerView.selectedRow(inComponent: 0)], note: note, amount: amount)
+            
+        } else {
+            //TODO: show error
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension AddContributionViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -51,15 +67,32 @@ extension AddContributionViewController: UIPickerViewDataSource, UIPickerViewDel
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickOption.count
+        return users.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickOption[row]
+        return users[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerTextField.text = pickOption[row]
+        pickerTextField.text = users[row].name
         pickerTextField.resignFirstResponder()
+    }
+}
+
+extension AddContributionViewController : UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if (string.count == 0) { return true }
+        
+        if (textField == amountField) {
+            let cs = CharacterSet(charactersIn:"0123456789.")
+            let filtered = string.components(separatedBy: cs).filter {  !$0.isEmpty }
+            let str = filtered.joined(separator: "")
+            
+            return (string != str)
+        }
+        
+        return true
     }
 }

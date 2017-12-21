@@ -113,6 +113,40 @@
                                             <outlet property="noteLabel" destination="MYm-Lv-9Lb" id="GFE-Rd-Egc"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" id="OmA-Y2-cjw">
+                                        <rect key="frame" x="0.0" y="99" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OmA-Y2-cjw" id="LNT-hJ-eBG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5ed-c1-RbI">
+                                                    <rect key="frame" x="15" y="11" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="R9L-5G-4yD"/>
+                                                        <constraint firstAttribute="height" constant="20" id="sXe-mE-whw"/>
+                                                    </constraints>
+                                                    <color key="color" red="0.99965971710000001" green="0.35562348370000002" blue="0.58737999200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYj-m9-ZJa">
+                                                    <rect key="frame" x="45" y="12" width="295" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="cwX-je-u1E"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.99965971710000001" green="0.35562348370000002" blue="0.58737999200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5ed-c1-RbI" firstAttribute="leading" secondItem="LNT-hJ-eBG" secondAttribute="leadingMargin" id="7ja-VD-HIi"/>
+                                                <constraint firstItem="OYj-m9-ZJa" firstAttribute="centerY" secondItem="LNT-hJ-eBG" secondAttribute="centerY" id="CS8-qB-oQm"/>
+                                                <constraint firstItem="OYj-m9-ZJa" firstAttribute="leading" secondItem="5ed-c1-RbI" secondAttribute="trailing" constant="10" id="Hun-6U-F1G"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="OYj-m9-ZJa" secondAttribute="trailing" constant="20" id="Zr6-HT-ech"/>
+                                                <constraint firstItem="5ed-c1-RbI" firstAttribute="centerY" secondItem="LNT-hJ-eBG" secondAttribute="centerY" id="d1d-Ms-Mno"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contributions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dE5-wS-nFj">
@@ -175,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EU0-0t-5uQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1566" y="38"/>
+            <point key="canvasLocation" x="1565.5999999999999" y="37.684729064039409"/>
         </scene>
         <!--Add Contribution View Controller-->
         <scene sceneID="MiL-hk-3TH">
@@ -198,6 +232,9 @@
                                         <state key="normal" title="CONTRIBUTE">
                                             <color key="titleColor" red="0.99965971708297729" green="0.35562348365783691" blue="0.58737999200820923" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="contributePressed:" destination="L50-GM-QTW" eventType="touchUpInside" id="H2f-yq-aRL"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kc1-8i-jLC">
                                         <rect key="frame" x="124" y="212" width="60" height="30"/>
@@ -273,6 +310,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="amountField" destination="nl9-KP-4OH" id="ma9-4E-em2"/>
+                        <outlet property="noteField" destination="2rl-Mu-9Rm" id="k9t-Q8-yv9"/>
                         <outlet property="pickerTextField" destination="NGz-7b-826" id="mDJ-Ni-kSa"/>
                     </connections>
                 </viewController>

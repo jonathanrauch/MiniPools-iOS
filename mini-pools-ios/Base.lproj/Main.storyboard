@@ -214,7 +214,6 @@
         <!--Add Contribution View Controller-->
         <scene sceneID="MiL-hk-3TH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vN5-U7-H9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="L50-GM-QTW" customClass="AddContributionViewController" customModule="mini_pools_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iDh-09-gRe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -308,13 +307,16 @@
                             <constraint firstAttribute="bottom" secondItem="DHW-XD-VrF" secondAttribute="bottom" id="uB9-4J-XMR"/>
                             <constraint firstItem="DHW-XD-VrF" firstAttribute="leading" secondItem="iDh-09-gRe" secondAttribute="leading" id="vUe-Ti-bi2"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="94J-EB-lDM"/>
                     </view>
                     <connections>
                         <outlet property="amountField" destination="nl9-KP-4OH" id="ma9-4E-em2"/>
+                        <outlet property="backView" destination="DHW-XD-VrF" id="Uw6-N8-H75"/>
                         <outlet property="noteField" destination="2rl-Mu-9Rm" id="k9t-Q8-yv9"/>
                         <outlet property="pickerTextField" destination="NGz-7b-826" id="mDJ-Ni-kSa"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vN5-U7-H9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2353" y="37"/>
         </scene>

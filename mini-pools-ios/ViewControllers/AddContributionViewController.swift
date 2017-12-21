@@ -18,6 +18,7 @@ class AddContributionViewController: UIViewController {
     @IBOutlet weak var pickerTextField: UITextField!
     @IBOutlet weak var amountField: UITextField!
     @IBOutlet weak var noteField: UITextField!
+    @IBOutlet weak var backView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,10 @@ class AddContributionViewController: UIViewController {
 
         pickerTextField.inputView = pickerView
         pickerTextField.text = users[0].name
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismiss(_:)))
+        backView.addGestureRecognizer(tap)
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(AddContributionViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AddContributionViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)

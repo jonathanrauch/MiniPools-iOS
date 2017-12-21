@@ -40,11 +40,14 @@ class PoolViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let pool = pool else { fatalError() }
+
         let vc = segue.destination as! AddContributionViewController
         vc.users = users
-        vc.poolId = pool!.id
+        vc.poolId = pool.id
         vc.delegate = self
         vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext //All objects and view are transparent
+        
     }
 
 }
@@ -58,11 +61,13 @@ extension PoolViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row  < pool!.contributions.count {
+        guard let pool = pool else { fatalError() }
+        
+        if indexPath.row  < pool.contributions.count {
             var cell = contributionsTableView.dequeueReusableCell(withIdentifier: "ContributionCell", for: indexPath) as! ContributionCellTableViewCell
-            cell.contributorLabel.text = "\(pool!.contributions[indexPath.row].contributor.name)"
-            cell.amountLabel.text = "\(pool!.contributions[indexPath.row].amountCurrency.getSymbolForCurrencyCode())\(pool!.contributions[indexPath.row].amountValue)"
-            cell.noteLabel.text = "\(pool!.contributions[indexPath.row].note ?? "")"
+            cell.contributorLabel.text = "\(pool.contributions[indexPath.row].contributor.name)"
+            cell.amountLabel.text = "\(pool.contributions[indexPath.row].amountCurrency.getSymbolForCurrencyCode())\(pool.contributions[indexPath.row].amountValue)"
+            cell.noteLabel.text = "\(pool.contributions[indexPath.row].note ?? "")"
             
             cell = removeMagins(cell) as! ContributionCellTableViewCell
             return cell

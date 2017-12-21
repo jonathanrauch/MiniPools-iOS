@@ -51,9 +51,9 @@ class AddContributionViewController: UIViewController {
     
     @IBAction func contributePressed(_ sender: Any) {
         let note = noteField.text
-        if let amountString = amountField.text, amountString.count > 0 {
+        if let amountString = amountField.text, amountString.count > 0, let poolId = poolId {
             let amount = Int(amountString)!
-            delegate?.addContribution(poolId: poolId!,contributor: users[pickerView.selectedRow(inComponent: 0)], note: note, amount: amount)
+            delegate?.addContribution(poolId: poolId,contributor: users[pickerView.selectedRow(inComponent: 0)], note: note, amount: amount)
             
         } else {
             //TODO: show error

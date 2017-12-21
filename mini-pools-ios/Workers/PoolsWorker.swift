@@ -10,9 +10,9 @@ import Alamofire
 import SwiftyJSON
 
 class PoolsWorker {
-
+    
     static func fetchPools(completion: @escaping ([PoolModel]) -> Void) {
-        Alamofire.request("\(API.BaseServerUrl)\(API.AllPools)").responseJSON { response in
+        Alamofire.request("\(API.baseServerUrl)\(API.allPools)").responseJSON { response in
             var pools : [PoolModel] = []
             if let responseResult = response.result.value {
                 let json = JSON(responseResult)

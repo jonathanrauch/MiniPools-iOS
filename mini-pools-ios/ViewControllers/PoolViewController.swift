@@ -17,6 +17,7 @@ class PoolViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         contributionsTableView.dataSource = self
         contributionsTableView.delegate = self
         contributionsTableView.tableFooterView = UIView()
@@ -33,6 +34,11 @@ class PoolViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! AddContributionViewController
+        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext //All objects and view are transparent
     }
 
 }

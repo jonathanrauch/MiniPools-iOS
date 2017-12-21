@@ -29,5 +29,16 @@ struct ContributionModel {
         self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
         self.contributor = PersonModel(dictionary:dictionary["contributor"])
     }
+    
+    init(dictionary : JSON, contributor: PersonModel) {
+        self.id = dictionary["id"].intValue
+        self.amountValue = dictionary["amountValue"].intValue
+        self.amountCurrency = dictionary["amountCurrency"].stringValue
+        self.note = dictionary["note"].string
+        self.extra = dictionary["extra"].string
+        self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
+        self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
+        self.contributor = contributor
+    }
 }
 

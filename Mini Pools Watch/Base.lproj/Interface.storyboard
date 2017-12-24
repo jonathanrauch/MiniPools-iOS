@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Mini_Pools_Watch" customModuleProvider="target">
+                    <items>
+                        <label alignment="center" text="Mini Pools" id="cyE-hY-MPe"/>
+                        <group width="1" alignment="left" id="dxD-Uw-O2V">
+                            <items>
+                                <table alignment="left" id="a39-Xg-3NV">
+                                    <items>
+                                        <tableRow identifier="AllPoolsRow" id="aHI-Wd-Viy" customClass="AllPoolsRowController" customModule="Mini_Pools_Watch_Extension">
+                                            <group key="rootItem" width="1" alignment="left" id="BxA-16-rnt">
+                                                <items>
+                                                    <label width="128" height="42" alignment="left" text="Label" textAlignment="center" numberOfLines="3" id="Z50-gu-96h">
+                                                        <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <connections>
+                                                <outlet property="poolNameLabel" destination="Z50-gu-96h" id="iyg-9f-aVV"/>
+                                            </connections>
+                                        </tableRow>
+                                    </items>
+                                </table>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="a39-Xg-3NV" id="Z6l-0M-y8U"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="189" y="119"/>
+        </scene>
+        <!--Pool-->
+        <scene sceneID="Nrh-ro-HnA">
+            <objects>
+                <controller identifier="Pool" id="7sI-db-mLO" customClass="PoolInterfaceController" customModule="Mini_Pools_Watch_Extension">
+                    <items>
+                        <label width="136" alignment="left" text="Label" textAlignment="center" id="Kua-Kt-dI3"/>
+                        <group width="1" alignment="left" id="sPk-K8-soK">
+                            <items>
+                                <label alignment="left" text="Pool created on Sept 10, 2017 by Cersei Lannister" numberOfLines="0" id="3e7-fE-AcK">
+                                    <color key="textColor" red="0.54007482755917224" green="0.99965971710000001" blue="0.95022467842691605" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Contributions" id="1y1-oN-pZO">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <group width="1" alignment="left" id="PdQ-jr-VWW">
+                            <items>
+                                <table alignment="left" id="Mig-Bo-Sfg">
+                                    <items>
+                                        <tableRow identifier="PoolRow" id="7t1-Fh-WMu" customClass="PoolRowController" customModule="Mini_Pools_Watch_Extension">
+                                            <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="TAy-Mp-u30">
+                                                <items>
+                                                    <group width="1" height="17" alignment="left" id="nE7-Ak-Qrg">
+                                                        <items>
+                                                            <label width="134" alignment="left" text="Roose Bolton" id="Lqo-1S-9Yp"/>
+                                                        </items>
+                                                    </group>
+                                                    <group width="1" alignment="left" id="YdM-yH-DoF">
+                                                        <items>
+                                                            <label alignment="left" text="The Lannisters " numberOfLines="0" id="VGn-bv-Gwa">
+                                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                            </label>
+                                                        </items>
+                                                    </group>
+                                                    <label alignment="left" text="$1000" id="t0d-A8-TUW">
+                                                        <color key="textColor" red="0.59439140560000003" green="0.72492867709999997" blue="0.35363867879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <connections>
+                                                <outlet property="contributionAmount" destination="t0d-A8-TUW" id="FpP-v4-Ecf"/>
+                                                <outlet property="contributionNote" destination="VGn-bv-Gwa" id="FPv-J1-7aM"/>
+                                                <outlet property="contributorName" destination="Lqo-1S-9Yp" id="Fti-zY-dNt"/>
+                                            </connections>
+                                        </tableRow>
+                                    </items>
+                                </table>
+                            </items>
+                        </group>
+                    </items>
+                    <menu key="menu" id="4Wz-gF-Ys4">
+                        <items>
+                            <menuItem title="Add Contribution" icon="add" id="wG2-RN-ccg">
+                                <connections>
+                                    <action selector="addContributionPressed" destination="7sI-db-mLO" id="yJO-ox-5k0"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="createdByLabel" destination="3e7-fE-AcK" id="ghS-E8-xKG"/>
+                        <outlet property="poolTitle" destination="Kua-Kt-dI3" id="sc3-CM-JDj"/>
+                        <outlet property="tableView" destination="Mig-Bo-Sfg" id="VTE-KC-MLe"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="438" y="123"/>
+        </scene>
+        <!--Add Contribution-->
+        <scene sceneID="aHx-Xq-MVF">
+            <objects>
+                <controller identifier="AddContribution" title="Add Contribution" id="rAH-F9-q7n" customClass="AddContributionInterfaceController" customModule="Mini_Pools_Watch_Extension">
+                    <items>
+                        <picker height="100" alignment="left" indicatorMode="shownWhileFocused" id="miB-f8-t6q">
+                            <connections>
+                                <action selector="pickerChanged:" destination="rAH-F9-q7n" id="7Ce-pA-NaF"/>
+                            </connections>
+                        </picker>
+                        <button width="1" alignment="left" title="Add note" id="PLJ-zM-Vhu">
+                            <connections>
+                                <action selector="addNote" destination="rAH-F9-q7n" id="G08-32-j4B"/>
+                            </connections>
+                        </button>
+                        <label width="136" alignment="left" text="Label" textAlignment="center" id="PoZ-5y-8z7"/>
+                        <group width="1" alignment="left" id="0Ln-ai-dEv">
+                            <items>
+                                <button width="0.20000000000000001" alignment="left" title="-" id="7Pf-PN-gxZ">
+                                    <connections>
+                                        <action selector="decrease" destination="rAH-F9-q7n" id="57H-ix-51v"/>
+                                    </connections>
+                                </button>
+                                <label width="0.59999999999999998" height="1" alignment="left" text="0" textAlignment="center" id="lWX-Y2-kdr"/>
+                                <button width="0.20000000000000001" alignment="left" title="+" id="MOX-uR-0Ca">
+                                    <connections>
+                                        <action selector="increase" destination="rAH-F9-q7n" id="eHO-BB-aLt"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                        <button width="1" alignment="left" title="Save" id="0SC-DL-6NE">
+                            <connections>
+                                <action selector="saveContribution" destination="rAH-F9-q7n" id="oKz-tj-uQ7"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="addNoteButton" destination="PLJ-zM-Vhu" id="4Kb-pd-NEw"/>
+                        <outlet property="amountLabel" destination="lWX-Y2-kdr" id="IFY-sh-gHc"/>
+                        <outlet property="contributorPicker" destination="miB-f8-t6q" id="VHb-bh-mxc"/>
+                        <outlet property="noteLabel" destination="PoZ-5y-8z7" id="cf0-7M-4MW"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="666" y="123"/>
+        </scene>
+    </scenes>
+</document>

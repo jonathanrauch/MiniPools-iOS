@@ -9,3 +9,10 @@ target 'mini-pools-ios' do
   # Pods for mini-pools-ios
 
 end
+
+target 'Mini Pools Watch Extension' do
+  use_frameworks!
+  platform :watchos, '4.2'
+  pod 'SwiftyJSON'
+  pod 'Alamofire', '~> 4.5'
+end

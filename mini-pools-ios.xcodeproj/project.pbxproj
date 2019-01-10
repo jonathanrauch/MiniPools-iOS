@@ -178,7 +178,6 @@
 				7E9F48801FEA638D00F40812 /* Frameworks */,
 				7E9F48811FEA638D00F40812 /* Resources */,
 				B286D527DE94A4A7C3D07BA0 /* [CP] Embed Pods Frameworks */,
-				D87ED7825FAEC63AAD0BDE10 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,7 +259,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-mini-pools-ios/Pods-mini-pools-ios-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-mini-pools-ios/Pods-mini-pools-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -271,22 +270,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mini-pools-ios/Pods-mini-pools-ios-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D87ED7825FAEC63AAD0BDE10 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mini-pools-ios/Pods-mini-pools-ios-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-mini-pools-ios/Pods-mini-pools-ios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

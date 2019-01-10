@@ -7,5 +7,5 @@
 //
 
 protocol AddContributionDelegate: class {
-    func addContribution(poolId: Int, contributor : PersonModel, note: String?, amount: Int)
+  func addContribution(poolId: Int, contributor : PersonModel, note: String?, amount: Int)
 }

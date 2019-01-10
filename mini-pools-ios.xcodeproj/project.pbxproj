@@ -12,17 +12,13 @@
 		7E52185D1FEAA523007B3985 /* PoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E52185C1FEAA523007B3985 /* PoolViewController.swift */; };
 		7E5218601FEAAE32007B3985 /* ContributionCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E52185F1FEAAE32007B3985 /* ContributionCellTableViewCell.swift */; };
 		7E5218621FEAB93A007B3985 /* AddContributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5218611FEAB93A007B3985 /* AddContributionViewController.swift */; };
-		7E86F4DD1FEBB034001C20F8 /* UsersWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E86F4DC1FEBB034001C20F8 /* UsersWorker.swift */; };
-		7E86F4DF1FEBB0A3001C20F8 /* HttpUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E86F4DE1FEBB0A3001C20F8 /* HttpUtils.swift */; };
 		7E86F4E21FEBBCB7001C20F8 /* AddContributionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E86F4E11FEBBCB7001C20F8 /* AddContributionProtocols.swift */; };
 		7E9F48871FEA638D00F40812 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F48861FEA638D00F40812 /* AppDelegate.swift */; };
 		7E9F48891FEA638D00F40812 /* AllPoolsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F48881FEA638D00F40812 /* AllPoolsTableViewController.swift */; };
 		7E9F488C1FEA638D00F40812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E9F488A1FEA638D00F40812 /* Main.storyboard */; };
 		7E9F488E1FEA638D00F40812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E9F488D1FEA638D00F40812 /* Assets.xcassets */; };
-		7E9F489A1FEA6B0000F40812 /* PoolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F48991FEA6B0000F40812 /* PoolModel.swift */; };
-		7E9F489C1FEA6C7F00F40812 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F489B1FEA6C7F00F40812 /* PersonModel.swift */; };
-		7E9F489E1FEA6CD000F40812 /* ContributionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F489D1FEA6CD000F40812 /* ContributionModel.swift */; };
-		7E9F48A11FEA7D4A00F40812 /* PoolsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F48A01FEA7D4A00F40812 /* PoolsWorker.swift */; };
+		87D7237F21E773AB00FDAA74 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D7237E21E773AB00FDAA74 /* API.swift */; };
+		87D7238221E7757A00FDAA74 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D7238121E7757A00FDAA74 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +29,6 @@
 		7E52185C1FEAA523007B3985 /* PoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolViewController.swift; sourceTree = "<group>"; };
 		7E52185F1FEAAE32007B3985 /* ContributionCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionCellTableViewCell.swift; sourceTree = "<group>"; };
 		7E5218611FEAB93A007B3985 /* AddContributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContributionViewController.swift; sourceTree = "<group>"; };
-		7E86F4DC1FEBB034001C20F8 /* UsersWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersWorker.swift; sourceTree = "<group>"; };
-		7E86F4DE1FEBB0A3001C20F8 /* HttpUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtils.swift; sourceTree = "<group>"; };
 		7E86F4E11FEBBCB7001C20F8 /* AddContributionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContributionProtocols.swift; sourceTree = "<group>"; };
 		7E9F48831FEA638D00F40812 /* mini-pools-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mini-pools-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9F48861FEA638D00F40812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,10 +36,8 @@
 		7E9F488B1FEA638D00F40812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7E9F488D1FEA638D00F40812 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E9F48921FEA638D00F40812 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E9F48991FEA6B0000F40812 /* PoolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolModel.swift; sourceTree = "<group>"; };
-		7E9F489B1FEA6C7F00F40812 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
-		7E9F489D1FEA6CD000F40812 /* ContributionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionModel.swift; sourceTree = "<group>"; };
-		7E9F48A01FEA7D4A00F40812 /* PoolsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolsWorker.swift; sourceTree = "<group>"; };
+		87D7237E21E773AB00FDAA74 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		87D7238121E7757A00FDAA74 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,15 +58,6 @@
 				3BD03BEB9653264D5A270F09 /* Pods_mini_pools_ios.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7E5218581FEA9952007B3985 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				7E5218591FEA995D007B3985 /* Extensions.swift */,
-				7E86F4DE1FEBB0A3001C20F8 /* HttpUtils.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		7E52185B1FEAA500007B3985 /* ViewControllers */ = {
@@ -124,12 +107,11 @@
 		7E9F48851FEA638D00F40812 /* mini-pools-ios */ = {
 			isa = PBXGroup;
 			children = (
+				87D7238021E773D600FDAA74 /* app */,
+				87D7237D21E7739C00FDAA74 /* scaffold */,
 				7E86F4E01FEBBCA0001C20F8 /* Protocols */,
 				7E52185E1FEAAE18007B3985 /* Views */,
 				7E52185B1FEAA500007B3985 /* ViewControllers */,
-				7E5218581FEA9952007B3985 /* Utils */,
-				7E9F489F1FEA7D2400F40812 /* Workers */,
-				7E9F48981FEA6AF000F40812 /* Models */,
 				7E9F48861FEA638D00F40812 /* AppDelegate.swift */,
 				7E9F488A1FEA638D00F40812 /* Main.storyboard */,
 				7E9F488D1FEA638D00F40812 /* Assets.xcassets */,
@@ -138,23 +120,21 @@
 			path = "mini-pools-ios";
 			sourceTree = "<group>";
 		};
-		7E9F48981FEA6AF000F40812 /* Models */ = {
+		87D7237D21E7739C00FDAA74 /* scaffold */ = {
 			isa = PBXGroup;
 			children = (
-				7E9F48991FEA6B0000F40812 /* PoolModel.swift */,
-				7E9F489B1FEA6C7F00F40812 /* PersonModel.swift */,
-				7E9F489D1FEA6CD000F40812 /* ContributionModel.swift */,
+				87D7237E21E773AB00FDAA74 /* API.swift */,
+				87D7238121E7757A00FDAA74 /* Models.swift */,
+				7E5218591FEA995D007B3985 /* Extensions.swift */,
 			);
-			path = Models;
+			path = scaffold;
 			sourceTree = "<group>";
 		};
-		7E9F489F1FEA7D2400F40812 /* Workers */ = {
+		87D7238021E773D600FDAA74 /* app */ = {
 			isa = PBXGroup;
 			children = (
-				7E9F48A01FEA7D4A00F40812 /* PoolsWorker.swift */,
-				7E86F4DC1FEBB034001C20F8 /* UsersWorker.swift */,
 			);
-			path = Workers;
+			path = app;
 			sourceTree = "<group>";
 		};
 		DF22EC889D7F54F29F1369FA /* Pods */ = {
@@ -195,11 +175,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Kaplún, Sebi";
 				TargetAttributes = {
 					7E9F48821FEA638D00F40812 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -282,17 +263,13 @@
 			files = (
 				7E5218601FEAAE32007B3985 /* ContributionCellTableViewCell.swift in Sources */,
 				7E9F48891FEA638D00F40812 /* AllPoolsTableViewController.swift in Sources */,
-				7E9F48A11FEA7D4A00F40812 /* PoolsWorker.swift in Sources */,
 				7E52185A1FEA995D007B3985 /* Extensions.swift in Sources */,
-				7E86F4DD1FEBB034001C20F8 /* UsersWorker.swift in Sources */,
-				7E9F489C1FEA6C7F00F40812 /* PersonModel.swift in Sources */,
+				87D7238221E7757A00FDAA74 /* Models.swift in Sources */,
+				87D7237F21E773AB00FDAA74 /* API.swift in Sources */,
 				7E52185D1FEAA523007B3985 /* PoolViewController.swift in Sources */,
 				7E5218621FEAB93A007B3985 /* AddContributionViewController.swift in Sources */,
-				7E9F489E1FEA6CD000F40812 /* ContributionModel.swift in Sources */,
 				7E86F4E21FEBBCB7001C20F8 /* AddContributionProtocols.swift in Sources */,
-				7E9F489A1FEA6B0000F40812 /* PoolModel.swift in Sources */,
 				7E9F48871FEA638D00F40812 /* AppDelegate.swift in Sources */,
-				7E86F4DF1FEBB0A3001C20F8 /* HttpUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +301,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -331,6 +309,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -381,6 +360,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -388,6 +368,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -427,7 +408,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cpc.mini-pools-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -442,7 +423,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cpc.mini-pools-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

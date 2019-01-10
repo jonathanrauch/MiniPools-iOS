@@ -9,8 +9,8 @@
 import UIKit
 
 class ContributionCellTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var contributorLabel: UILabel!
-    @IBOutlet weak var noteLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
+  
+  @IBOutlet weak var contributorLabel: UILabel!
+  @IBOutlet weak var noteLabel: UILabel!
+  @IBOutlet weak var amountLabel: UILabel!
 }

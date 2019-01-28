@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddContributionDelegate: class {
+  func addContribution(poolId: Int, contributor : PersonModel, note: String?, amount: Int)
+}
+
 class AddContributionViewController: UIViewController {
   
   var users : [PersonModel] = []

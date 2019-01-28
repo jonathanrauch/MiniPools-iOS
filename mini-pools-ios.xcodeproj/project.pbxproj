@@ -12,10 +12,9 @@
 		7E52185D1FEAA523007B3985 /* PoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E52185C1FEAA523007B3985 /* PoolViewController.swift */; };
 		7E5218601FEAAE32007B3985 /* ContributionCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E52185F1FEAAE32007B3985 /* ContributionCellTableViewCell.swift */; };
 		7E5218621FEAB93A007B3985 /* AddContributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5218611FEAB93A007B3985 /* AddContributionViewController.swift */; };
-		7E86F4E21FEBBCB7001C20F8 /* AddContributionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E86F4E11FEBBCB7001C20F8 /* AddContributionProtocols.swift */; };
 		7E9F48871FEA638D00F40812 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F48861FEA638D00F40812 /* AppDelegate.swift */; };
 		7E9F48891FEA638D00F40812 /* AllPoolsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9F48881FEA638D00F40812 /* AllPoolsTableViewController.swift */; };
-		7E9F488C1FEA638D00F40812 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E9F488A1FEA638D00F40812 /* Main.storyboard */; };
+		7E9F488C1FEA638D00F40812 /* Pages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E9F488A1FEA638D00F40812 /* Pages.storyboard */; };
 		7E9F488E1FEA638D00F40812 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E9F488D1FEA638D00F40812 /* Assets.xcassets */; };
 		87D7237F21E773AB00FDAA74 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D7237E21E773AB00FDAA74 /* API.swift */; };
 		87D7238221E7757A00FDAA74 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D7238121E7757A00FDAA74 /* Models.swift */; };
@@ -29,11 +28,10 @@
 		7E52185C1FEAA523007B3985 /* PoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolViewController.swift; sourceTree = "<group>"; };
 		7E52185F1FEAAE32007B3985 /* ContributionCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionCellTableViewCell.swift; sourceTree = "<group>"; };
 		7E5218611FEAB93A007B3985 /* AddContributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContributionViewController.swift; sourceTree = "<group>"; };
-		7E86F4E11FEBBCB7001C20F8 /* AddContributionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContributionProtocols.swift; sourceTree = "<group>"; };
 		7E9F48831FEA638D00F40812 /* mini-pools-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mini-pools-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E9F48861FEA638D00F40812 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E9F48881FEA638D00F40812 /* AllPoolsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPoolsTableViewController.swift; sourceTree = "<group>"; };
-		7E9F488B1FEA638D00F40812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7E9F488B1FEA638D00F40812 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Pages.storyboard; sourceTree = "<group>"; };
 		7E9F488D1FEA638D00F40812 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E9F48921FEA638D00F40812 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87D7237E21E773AB00FDAA74 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -60,32 +58,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7E52185B1FEAA500007B3985 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				7E9F48881FEA638D00F40812 /* AllPoolsTableViewController.swift */,
-				7E52185C1FEAA523007B3985 /* PoolViewController.swift */,
-				7E5218611FEAB93A007B3985 /* AddContributionViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		7E52185E1FEAAE18007B3985 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7E52185F1FEAAE32007B3985 /* ContributionCellTableViewCell.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		7E86F4E01FEBBCA0001C20F8 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				7E86F4E11FEBBCB7001C20F8 /* AddContributionProtocols.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		7E9F487A1FEA638D00F40812 = {
 			isa = PBXGroup;
 			children = (
@@ -109,13 +81,9 @@
 			children = (
 				87D7238021E773D600FDAA74 /* app */,
 				87D7237D21E7739C00FDAA74 /* scaffold */,
-				7E86F4E01FEBBCA0001C20F8 /* Protocols */,
-				7E52185E1FEAAE18007B3985 /* Views */,
-				7E52185B1FEAA500007B3985 /* ViewControllers */,
 				7E9F48861FEA638D00F40812 /* AppDelegate.swift */,
-				7E9F488A1FEA638D00F40812 /* Main.storyboard */,
-				7E9F488D1FEA638D00F40812 /* Assets.xcassets */,
 				7E9F48921FEA638D00F40812 /* Info.plist */,
+				7E9F488D1FEA638D00F40812 /* Assets.xcassets */,
 			);
 			path = "mini-pools-ios";
 			sourceTree = "<group>";
@@ -126,6 +94,7 @@
 				87D7237E21E773AB00FDAA74 /* API.swift */,
 				87D7238121E7757A00FDAA74 /* Models.swift */,
 				7E5218591FEA995D007B3985 /* Extensions.swift */,
+				7E9F488A1FEA638D00F40812 /* Pages.storyboard */,
 			);
 			path = scaffold;
 			sourceTree = "<group>";
@@ -133,6 +102,10 @@
 		87D7238021E773D600FDAA74 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				7E52185F1FEAAE32007B3985 /* ContributionCellTableViewCell.swift */,
+				7E9F48881FEA638D00F40812 /* AllPoolsTableViewController.swift */,
+				7E52185C1FEAA523007B3985 /* PoolViewController.swift */,
+				7E5218611FEAB93A007B3985 /* AddContributionViewController.swift */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -209,7 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E9F488E1FEA638D00F40812 /* Assets.xcassets in Resources */,
-				7E9F488C1FEA638D00F40812 /* Main.storyboard in Resources */,
+				7E9F488C1FEA638D00F40812 /* Pages.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +241,6 @@
 				87D7237F21E773AB00FDAA74 /* API.swift in Sources */,
 				7E52185D1FEAA523007B3985 /* PoolViewController.swift in Sources */,
 				7E5218621FEAB93A007B3985 /* AddContributionViewController.swift in Sources */,
-				7E86F4E21FEBBCB7001C20F8 /* AddContributionProtocols.swift in Sources */,
 				7E9F48871FEA638D00F40812 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,12 +248,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7E9F488A1FEA638D00F40812 /* Main.storyboard */ = {
+		7E9F488A1FEA638D00F40812 /* Pages.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7E9F488B1FEA638D00F40812 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Pages.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

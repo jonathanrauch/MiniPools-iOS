@@ -13,7 +13,6 @@ struct PoolModel {
   var name: String
   var goalAmountValue: Int
   var goalAmountCurrency: String
-  var extra: String?
   var createdAt: Date
   var updatedAt: Date
   var creator: PersonModel?
@@ -24,7 +23,6 @@ struct PoolModel {
     self.name = dictionary["name"].stringValue
     self.goalAmountValue = dictionary["goalAmountValue"].intValue
     self.goalAmountCurrency = dictionary["goalAmountCurrency"].stringValue
-    self.extra = dictionary["extra"].string
     self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
     self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
     
@@ -43,7 +41,6 @@ struct PersonModel {
   var id: Int
   var name: String
   var avatarUrl: String
-  var extra: String?
   var createdAt: Date
   var updatedAt: Date
   
@@ -51,7 +48,6 @@ struct PersonModel {
     self.id = dictionary["id"].intValue
     self.name = dictionary["name"].stringValue
     self.avatarUrl = dictionary["avatarUrl"].stringValue
-    self.extra = dictionary["extra"].string
     self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
     self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
   }
@@ -62,7 +58,6 @@ struct ContributionModel {
   var amountValue: Int
   var amountCurrency: String
   var note: String?
-  var extra: String?
   var createdAt: Date
   var updatedAt: Date
   var contributor : PersonModel
@@ -72,7 +67,6 @@ struct ContributionModel {
     self.amountValue = dictionary["amountValue"].intValue
     self.amountCurrency = dictionary["amountCurrency"].stringValue
     self.note = dictionary["note"].string
-    self.extra = dictionary["extra"].string
     self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
     self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
     self.contributor = PersonModel(dictionary:dictionary["contributor"])
@@ -83,7 +77,6 @@ struct ContributionModel {
     self.amountValue = dictionary["amountValue"].intValue
     self.amountCurrency = dictionary["amountCurrency"].stringValue
     self.note = dictionary["note"].string
-    self.extra = dictionary["extra"].string
     self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
     self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
     self.contributor = contributor

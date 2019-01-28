@@ -8,6 +8,7 @@ target 'mini-pools-ios' do
   use_frameworks!
   pod 'SwiftyJSON'
   pod 'Alamofire', '~> 4.5'
+  pod 'SnapKit'
   # Pods for mini-pools-ios
 
 end

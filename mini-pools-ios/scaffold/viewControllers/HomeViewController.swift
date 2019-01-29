@@ -24,9 +24,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     self.view.addSubview(searchBar)
     self.view.addSubview(tableView)
     
-    self.searchBar.translatesAutoresizingMaskIntoConstraints = false
-    self.tableView.translatesAutoresizingMaskIntoConstraints = false
-    
     self.searchBar.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
       make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin)

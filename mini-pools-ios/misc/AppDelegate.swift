@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // setup navigation controller
     let navController = UINavigationController()
-    navController.viewControllers = [PoolFormViewController()]
+    navController.viewControllers = [HomeViewController()]
     self.navController = navController
     
     // setup window

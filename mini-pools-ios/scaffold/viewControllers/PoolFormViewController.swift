@@ -14,8 +14,8 @@ class PoolFormViewController: UIViewController {
   
   private let nameLabel = UILabel()
   private let goalAmountLabel = UILabel()
-  private let nameTextField = UILabel()
-  private let goalAmountTextField = UILabel()
+  private let nameTextField = UITextField()
+  private let goalAmountTextField = UITextField()
   private let actionButton = UIButton(type: .system)
   
   override func loadView() {
@@ -24,45 +24,49 @@ class PoolFormViewController: UIViewController {
     self.view.backgroundColor = UIColor.white
     
     self.view.addSubview(nameLabel)
-    self.view.addSubview(amountLabel)
-    self.view.addSubview(deleteButton)
-    self.view.addSubview(editButton)
+    self.view.addSubview(goalAmountLabel)
+    self.view.addSubview(nameTextField)
+    self.view.addSubview(goalAmountTextField)
+    self.view.addSubview(actionButton)
     
-    self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
-    self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
-    self.deleteButton.translatesAutoresizingMaskIntoConstraints = false
-    self.editButton.translatesAutoresizingMaskIntoConstraints = false
-    
-    self.deleteButton.setTitle("Delete", for: .normal)
-    self.editButton.setTitle("Edit", for: .normal)
-    
-    self.nameLabel.font = self.nameLabel.font.withSize(30)
-    self.nameLabel.textAlignment = .center
-    self.amountLabel.textAlignment = .center
+    actionButton.backgroundColor = UIColor.lightGray
+    actionButton.setTitleColor(UIColor.white, for: .normal)
     
     self.nameLabel.snp.makeConstraints { make in
       make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin).offset(20)
-      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin)
-      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin)
+      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin).offset(20)
+      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin).offset(-20)
     }
     
-    self.amountLabel.snp.makeConstraints { make in
-      make.top.equalTo(nameLabel.snp.bottom).offset(20)
-      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin)
-      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin)
+    self.nameTextField.snp.makeConstraints { make in
+      make.top.equalTo(nameLabel.snp.bottom)
+      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin).offset(20)
+      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin).offset(-20)
     }
     
-    self.deleteButton.snp.makeConstraints { make in
-      make.top.equalTo(amountLabel.snp.bottom).offset(30)
-      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin)
-      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin)
+    self.goalAmountLabel.snp.makeConstraints { make in
+      make.top.equalTo(nameTextField.safeAreaLayoutGuide.snp.topMargin).offset(40)
+      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin).offset(20)
+      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin).offset(-20)
     }
     
-    self.editButton.snp.makeConstraints { make in
-      make.top.equalTo(deleteButton.snp.bottom).offset(10)
-      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin)
-      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin)
+    self.goalAmountTextField.snp.makeConstraints { make in
+      make.top.equalTo(goalAmountLabel.snp.bottom)
+      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin).offset(20)
+      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin).offset(-20)
     }
+    
+    self.actionButton.snp.makeConstraints { make in
+      make.top.equalTo(goalAmountTextField.snp.bottom).offset(20)
+      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin).offset(20)
+      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin).offset(-20)
+    }
+    
+    self.nameLabel.text = "Pool Name"
+    self.goalAmountLabel.text = "Amount Goal"
+    self.nameTextField.placeholder = "required"
+    self.goalAmountTextField.placeholder = "optional"
+    self.goalAmountTextField.keyboardType = .numberPad
     
     self.actionButton.addTarget(self, action: #selector(handleAction), for: .touchUpInside)
   }
@@ -72,6 +76,9 @@ class PoolFormViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.title = "" // IMPLEMENT (pool name or "create new pool")
+    self.actionButton.setTitle("action", for: .normal) // IMPLEMENT (correct button name)
+    self.nameTextField.text = "aasas" // IMPLEMENT (pool name in case of edit)
+    self.goalAmountTextField.text = "" // IMPLEMENT (goal amount in case of edit)
   }
   
   // MARK - UIButton handlers

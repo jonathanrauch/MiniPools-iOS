@@ -33,7 +33,7 @@ After developing the app you're supposes to give a talk about the architecture:
   
 The application has 4 screens:
 
-- Home screen that shows all available pools. 
+- Home screen that shows all available pools.
   - Each cell shows the pool's title, it's contribution amount (e.g. $0), and if there's a goal, shows it as well (e.g $0 / $50).  Amounts should be integers.
     - Fetches all pools from the server on `viewWillAppear` and shows the top-bar activity indicator while it does.
     - No need to do pull-to-refresh.
@@ -86,7 +86,10 @@ The codebase comes with some basic components (inside the `scaffold` folder), so
     - PoolModel.
     - ContributionModel.
     
-- View controllers corresponding to all screens (create and edit share the same one).
+    - View controllers corresponding to all screens (create and edit share the same one):
+      - `HomeViewController.swift`.
+      - `PoolViewController.swift`.
+      - `PoolFormViewController.swift`.
 
 __NOTE:__ Any obvious code paths that need to be implemented according to your architecture, are marked with an `// IMPLEMENT` comment. Just search for it.
 

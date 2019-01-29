@@ -27,11 +27,6 @@ class PoolViewController: UIViewController {
     self.view.addSubview(deleteButton)
     self.view.addSubview(editButton)
     
-    self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
-    self.amountLabel.translatesAutoresizingMaskIntoConstraints = false
-    self.deleteButton.translatesAutoresizingMaskIntoConstraints = false
-    self.editButton.translatesAutoresizingMaskIntoConstraints = false
-    
     self.deleteButton.setTitle("Delete", for: .normal)
     self.editButton.setTitle("Edit", for: .normal)
     

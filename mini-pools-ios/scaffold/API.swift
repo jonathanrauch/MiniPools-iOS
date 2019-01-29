@@ -18,27 +18,14 @@ class API {
   private static let poolsPath = "/pools"
   private static let contributionsPath = "/contributions"
   
+  private static let nameParam = "name"
   private static let amountValueParam = "amountValue"
+  private static let creatorIdParam = "creatorId"
   private static let amountCurrencyParam = "amountCurrency"
-  private static let noteParam = "note"
   private static let contributorIdParam = "contributorId"
   
   // MARK: endpoints
-  
-  static func fetchUsers(completion: @escaping ([PersonModel]) -> Void) {
-    Alamofire.request("\(API.baseServerUrl)\(API.usersPath)").responseJSON { response in
-      var users : [PersonModel] = []
-      if let responseResult = response.result.value {
-        let json = JSON(responseResult)
-        for userJson in json.arrayValue {
-          let user = PersonModel(dictionary: userJson)
-          users.append(user)
-        }
-      }
-      completion(users)
-    }
-  }
-  
+
   static func fetchPools(completion: @escaping ([PoolModel]) -> Void) {
     Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)").responseJSON { response in
       var pools: [PoolModel] = []
@@ -53,20 +40,41 @@ class API {
     }
   }
   
-  static func contributeToPool(poolId: Int, amountValue: Int, amountCurrency: String, note: String?, contributor: PersonModel, completion: @escaping (ContributionModel) -> Void) {
+  static func createPool(poolName: String, goalAmountValue: Int, completion: @escaping (PoolModel) -> Void) {
     let parameters: Parameters = [
-      API.amountValueParam: amountValue,
-      API.amountCurrencyParam: amountCurrency,
-      API.noteParam: note ?? "",
-      API.contributorIdParam: contributor.id
+      API.nameParam: poolName,
+      API.amountValueParam: goalAmountValue,
+      API.amountCurrencyParam: "USD",
+      API.creatorIdParam: 6
     ]
     
-    Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)/\(poolId)\(API.contributionsPath)", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+    Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
       if let responseResult = response.result.value {
         let json = JSON(responseResult)
-        let contribution = ContributionModel(dictionary: json, contributor: contributor)
-        completion(contribution)
+        let pool = PoolModel(dictionary: json)
+        completion(pool)
       }
     }
+  }
+  
+  static func updatePool(poolName: String, goalAmountValue: Int, completion: @escaping (PoolModel) -> Void) {
+    let parameters: Parameters = [
+      API.nameParam: poolName,
+      API.amountValueParam: goalAmountValue
+    ]
+    
+    Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)", method: .patch, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+      if let responseResult = response.result.value {
+        let json = JSON(responseResult)
+        let pool = PoolModel(dictionary: json)
+        completion(pool)
+      }
+    }
+  }
+  
+  static func deletePool(poolId: String, completion: @escaping () -> Void) {
+    Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)/\(poolId)", method: .delete, encoding: JSONEncoding.default).responseJSON { response in
+        completion()
+      }
   }
 }

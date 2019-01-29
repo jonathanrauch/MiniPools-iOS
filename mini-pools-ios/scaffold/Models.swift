@@ -15,7 +15,6 @@ struct PoolModel {
   var goalAmountCurrency: String
   var createdAt: Date
   var updatedAt: Date
-  var creator: PersonModel?
   var contributions: [ContributionModel] = []
   
   init(dictionary: JSON) {
@@ -26,10 +25,6 @@ struct PoolModel {
     self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
     self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
     
-    if dictionary["creator"] != JSON.null {
-      self.creator = PersonModel(dictionary: dictionary["creator"])
-    }
-    
     for contributionJson in dictionary["contributions"].arrayValue {
       let contribution = ContributionModel(dictionary: contributionJson)
       contributions.append(contribution)
@@ -37,49 +32,19 @@ struct PoolModel {
   }
 }
 
-struct PersonModel {
-  var id: Int
-  var name: String
-  var avatarUrl: String
-  var createdAt: Date
-  var updatedAt: Date
-  
-  init(dictionary: JSON) {
-    self.id = dictionary["id"].intValue
-    self.name = dictionary["name"].stringValue
-    self.avatarUrl = dictionary["avatarUrl"].stringValue
-    self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
-    self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
-  }
-}
-
 struct ContributionModel {
   var id: Int
   var amountValue: Int
   var amountCurrency: String
-  var note: String?
   var createdAt: Date
   var updatedAt: Date
-  var contributor : PersonModel
   
   init(dictionary: JSON ) {
     self.id = dictionary["id"].intValue
     self.amountValue = dictionary["amountValue"].intValue
     self.amountCurrency = dictionary["amountCurrency"].stringValue
-    self.note = dictionary["note"].string
     self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
     self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
-    self.contributor = PersonModel(dictionary:dictionary["contributor"])
-  }
-  
-  init(dictionary: JSON, contributor: PersonModel) {
-    self.id = dictionary["id"].intValue
-    self.amountValue = dictionary["amountValue"].intValue
-    self.amountCurrency = dictionary["amountCurrency"].stringValue
-    self.note = dictionary["note"].string
-    self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
-    self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
-    self.contributor = contributor
   }
 }
 

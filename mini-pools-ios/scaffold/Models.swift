@@ -11,8 +11,8 @@ import SwiftyJSON
 struct PoolModel {
   var id: Int
   var name: String
-  var goalAmountValue: Int
-  var goalAmountCurrency: String
+  var goalAmountValue: Int?
+  var goalAmountCurrency: String?
   var createdAt: Date
   var updatedAt: Date
   var contributions: [ContributionModel] = []

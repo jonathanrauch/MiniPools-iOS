@@ -40,14 +40,22 @@ class API {
     }
   }
   
-  static func createPool(poolName: String, goalAmountValue: Int, completion: @escaping (PoolModel) -> Void) {
-    let parameters: Parameters = [
-      API.nameParam: poolName,
-      API.amountValueParam: goalAmountValue,
-      API.amountCurrencyParam: "USD",
-      API.creatorIdParam: 6
-    ]
-    
+  static func createPool(poolName: String, goalAmountValue: Int? = nil, completion: @escaping (PoolModel) -> Void) {
+    let parameters: Parameters
+    if let goalAmountValue = goalAmountValue {
+      parameters = [
+        API.nameParam: poolName,
+        API.amountValueParam: goalAmountValue,
+        API.amountCurrencyParam: "USD",
+        API.creatorIdParam: 6
+      ]
+    } else {
+      parameters = [
+        API.nameParam: poolName,
+        API.creatorIdParam: 6
+      ]
+    }
+  
     Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
       if let responseResult = response.result.value {
         let json = JSON(responseResult)

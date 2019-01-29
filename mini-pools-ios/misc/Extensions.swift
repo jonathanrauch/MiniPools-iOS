@@ -32,79 +32,11 @@ class DateUtil {
 }
 
 extension UIView {
-  
-  func size(width: CGFloat, height: CGFloat) {
-    NSLayoutConstraint.activate([
-      self.widthAnchor.constraint(equalToConstant: width),
-      self.heightAnchor.constraint(equalToConstant: height)
-    ])
-  }
-  
-  func edges(_ edges: UIRectEdge, to view: UIView, offset: UIEdgeInsets) {
-    if edges.contains(.top) || edges.contains(.all) {
-      self.topAnchor.constraint(equalTo: view.topAnchor, constant: offset.top).isActive = true
-    }
-    
-    if edges.contains(.bottom) || edges.contains(.all) {
-      self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: offset.bottom).isActive = true
-    }
-    
-    if edges.contains(.left) || edges.contains(.all) {
-      self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: offset.left).isActive = true
-    }
-    
-    if edges.contains(.right) || edges.contains(.all) {
-      self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: offset.right).isActive = true
-    }
-  }
-  
-  func neighbour(_ edges: UIRectEdge, to view: UIView, offset: UIEdgeInsets) {
-    if edges.contains(.top) {
-      self.topAnchor.constraint(equalTo: view.bottomAnchor, constant: offset.top).isActive = true
-    }
-    
-    if edges.contains(.bottom) {
-      self.bottomAnchor.constraint(equalTo: view.topAnchor, constant: offset.bottom).isActive = true
-    }
-    
-    if edges.contains(.left) {
-      self.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: offset.left).isActive = true
-    }
-    
-    if edges.contains(.right)  {
-      self.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: offset.right).isActive = true
-    }
-  }
-  
-  var safeTopAnchor: NSLayoutYAxisAnchor {
-    if #available(iOS 11.0, *) {
-      return self.safeAreaLayoutGuide.topAnchor
-    } else {
-      return self.topAnchor
-    }
-  }
-  
-  var safeLeftAnchor: NSLayoutXAxisAnchor {
-    if #available(iOS 11.0, *){
-      return self.safeAreaLayoutGuide.leftAnchor
-    }else {
-      return self.leftAnchor
-    }
-  }
-  
-  var safeRightAnchor: NSLayoutXAxisAnchor {
-    if #available(iOS 11.0, *){
-      return self.safeAreaLayoutGuide.rightAnchor
-    }else {
-      return self.rightAnchor
-    }
-  }
-  
-  var safeBottomAnchor: NSLayoutYAxisAnchor {
-    if #available(iOS 11.0, *) {
-      return self.safeAreaLayoutGuide.bottomAnchor
-    } else {
-      return self.bottomAnchor
-    }
+  func shake() {
+    let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+    animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+    animation.duration = 0.6
+    animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0]
+    layer.add(animation, forKey: "shake")
   }
 }

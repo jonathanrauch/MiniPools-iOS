@@ -13,7 +13,6 @@
 		873B733721FF023D005E85C1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B733621FF023D005E85C1 /* HomeViewController.swift */; };
 		873B733D21FF1873005E85C1 /* PoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B733C21FF1873005E85C1 /* PoolViewController.swift */; };
 		873B734221FF1B1E005E85C1 /* PoolFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B734121FF1B1E005E85C1 /* PoolFormViewController.swift */; };
-		873B734421FF1B2F005E85C1 /* ContributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B734321FF1B2F005E85C1 /* ContributeViewController.swift */; };
 		87D7237F21E773AB00FDAA74 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D7237E21E773AB00FDAA74 /* API.swift */; };
 		87D7238221E7757A00FDAA74 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D7238121E7757A00FDAA74 /* Models.swift */; };
 /* End PBXBuildFile section */
@@ -29,7 +28,8 @@
 		873B733621FF023D005E85C1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		873B733C21FF1873005E85C1 /* PoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolViewController.swift; sourceTree = "<group>"; };
 		873B734121FF1B1E005E85C1 /* PoolFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolFormViewController.swift; sourceTree = "<group>"; };
-		873B734321FF1B2F005E85C1 /* ContributeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributeViewController.swift; sourceTree = "<group>"; };
+		873B734521FF2672005E85C1 /* INSTRUCTIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = INSTRUCTIONS.md; sourceTree = "<group>"; };
+		873B734621FF285B005E85C1 /* YOUR-EXTRA-CODE-COMES-HERE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "YOUR-EXTRA-CODE-COMES-HERE"; sourceTree = "<group>"; };
 		87D7237E21E773AB00FDAA74 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		87D7238121E7757A00FDAA74 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +79,7 @@
 				87D7237D21E7739C00FDAA74 /* scaffold */,
 				873B733321FF01BB005E85C1 /* misc */,
 				7E9F48921FEA638D00F40812 /* Info.plist */,
+				873B734521FF2672005E85C1 /* INSTRUCTIONS.md */,
 			);
 			path = "mini-pools-ios";
 			sourceTree = "<group>";
@@ -98,22 +99,13 @@
 				873B733621FF023D005E85C1 /* HomeViewController.swift */,
 				873B733C21FF1873005E85C1 /* PoolViewController.swift */,
 				873B734121FF1B1E005E85C1 /* PoolFormViewController.swift */,
-				873B734321FF1B2F005E85C1 /* ContributeViewController.swift */,
 			);
 			path = viewControllers;
-			sourceTree = "<group>";
-		};
-		873B733521FF021C005E85C1 /* views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = views;
 			sourceTree = "<group>";
 		};
 		87D7237D21E7739C00FDAA74 /* scaffold */ = {
 			isa = PBXGroup;
 			children = (
-				873B733521FF021C005E85C1 /* views */,
 				873B733421FF020F005E85C1 /* viewControllers */,
 				87D7237E21E773AB00FDAA74 /* API.swift */,
 				87D7238121E7757A00FDAA74 /* Models.swift */,
@@ -124,6 +116,7 @@
 		87D7238021E773D600FDAA74 /* app */ = {
 			isa = PBXGroup;
 			children = (
+				873B734621FF285B005E85C1 /* YOUR-EXTRA-CODE-COMES-HERE */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -257,7 +250,6 @@
 				7E52185A1FEA995D007B3985 /* Extensions.swift in Sources */,
 				87D7238221E7757A00FDAA74 /* Models.swift in Sources */,
 				87D7237F21E773AB00FDAA74 /* API.swift in Sources */,
-				873B734421FF1B2F005E85C1 /* ContributeViewController.swift in Sources */,
 				873B733721FF023D005E85C1 /* HomeViewController.swift in Sources */,
 				7E9F48871FEA638D00F40812 /* AppDelegate.swift in Sources */,
 			);

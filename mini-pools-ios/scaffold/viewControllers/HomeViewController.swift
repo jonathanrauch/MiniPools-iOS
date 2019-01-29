@@ -11,15 +11,19 @@ import SnapKit
 
 class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
   
+  // MARK: Scaffold - don't touch this - hammer time! 🔨
+  
   private let searchBar = UISearchBar()
   private let tableView = UITableView()
   
-  // MARK: Life-cycle
-  
   override func loadView() {
     super.loadView()
+    
+    self.view.backgroundColor = UIColor.white
+    
     self.view.addSubview(searchBar)
     self.view.addSubview(tableView)
+    
     self.searchBar.translatesAutoresizingMaskIntoConstraints = false
     self.tableView.translatesAutoresizingMaskIntoConstraints = false
     
@@ -37,11 +41,20 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     }
   }
   
+  // MARK: Lifecycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.backgroundColor = UIColor.white
     self.title = "Mini Pools"
     self.searchBar.delegate = self
     self.tableView.delegate = self
+    self.tableView.dataSource = self
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    // IMPLEMENT (fetch and render pools, show ios top-bar activity indicator while fetching - `UIApplication.shared.isNetworkActivityIndicatorVisible = value`)
   }
   
   // MARK - UISearchBarDelegate
@@ -53,7 +66,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   // MARK - UITableViewDelegate
   
   func tableView(_tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-    // IMPLEMENT (go to pool page)
+    // IMPLEMENT (push pool page to navigation stack)
   }
   
   // MARK - UITableViewDataSource
@@ -64,8 +77,10 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    // IMPLEMENT (return pool cell with details)
-    return UITableViewCell()
+    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "poolCell")
+    cell.textLabel?.text = "pool" // IMPLEMENT (pool name)
+    cell.detailTextLabel?.text = "$0.00" // IMPLEMENT (pool amount)
+    return cell
   }
   
 }

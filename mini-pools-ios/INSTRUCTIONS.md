@@ -1,4 +1,4 @@
-#  Mini-Pools architecture challange 
+#  Mini-Pools architecture challenge  
 
 ### Assignments
 

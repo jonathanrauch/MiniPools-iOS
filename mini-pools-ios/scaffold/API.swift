@@ -19,9 +19,9 @@ class API {
   private static let contributionsPath = "/contributions"
   
   private static let nameParam = "name"
-  private static let amountValueParam = "amountValue"
+  private static let amountValueParam = "goalAmountValue"
   private static let creatorIdParam = "creatorId"
-  private static let amountCurrencyParam = "amountCurrency"
+  private static let amountCurrencyParam = "goalAmountCurrency"
   private static let contributorIdParam = "contributorId"
   
   // MARK: endpoints
@@ -65,16 +65,19 @@ class API {
     }
   }
   
-  static func updatePool(poolName: String, goalAmountValue: Int, completion: @escaping (PoolModel) -> Void) {
+  static func updatePool(poolId: String, poolName: String, goalAmountValue: Int? = nil, completion: @escaping (PoolModel) -> Void) {
     let parameters: Parameters = [
       API.nameParam: poolName,
-      API.amountValueParam: goalAmountValue
+      API.amountValueParam: goalAmountValue as Any
     ]
     
-    Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)", method: .patch, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+    Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)/\(poolId)", method: .patch, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
       if let responseResult = response.result.value {
         let json = JSON(responseResult)
-        let pool = PoolModel(dictionary: json)
+        var pool = PoolModel(dictionary: json)
+        // hack, server doesn't return updated item
+        pool.name = poolName
+        pool.goalAmountValue = goalAmountValue
         completion(pool)
       }
     }

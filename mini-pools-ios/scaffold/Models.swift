@@ -8,6 +8,8 @@
 
 import SwiftyJSON
 
+// MARK - PoolModel
+
 struct PoolModel {
   var id: Int
   var name: String
@@ -31,6 +33,20 @@ struct PoolModel {
     }
   }
 }
+
+extension PoolModel {
+  var hasGoal: Bool {
+    return self.goalAmountValue != nil
+  }
+  
+  var contributionsSum: Int {
+    return self.contributions.reduce(0) { (sum, contribution) -> Int in
+      return sum + contribution.amountValue
+    }
+  }
+}
+
+// MARK - ContributionModel
 
 struct ContributionModel {
   var id: Int

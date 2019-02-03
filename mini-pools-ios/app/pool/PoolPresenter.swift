@@ -9,10 +9,13 @@
 import UIKit
 
 protocol PoolView: class {
+  func toggleSpinner(value: Bool)
+  func toggleInteraction(value: Bool)
   func setTitle(title: String)
   func setName(name: String)
   func setAmount(amount: String)
   func navigateToEditPoolPage()
+  func navigateToHomePage()
 }
 
 class PoolPresenter {
@@ -33,7 +36,13 @@ class PoolPresenter {
   }
   
   func selectedDelete() {
-    
+    self.view.toggleSpinner(value: true)
+    self.view.toggleInteraction(value: false)
+    API.deletePool(poolId: self.model.id) { [unowned self] in
+      self.view.toggleSpinner(value: false)
+      self.view.toggleInteraction(value: true)
+      self.view.navigateToHomePage()
+    }
   }
   
   func selectedEdit() {

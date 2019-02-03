@@ -83,6 +83,16 @@ class PoolViewController: UIViewController, PoolView {
   
   // MARK: PoolView
   
+  func toggleSpinner(value: Bool) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = value
+  }
+  
+  func toggleInteraction(value: Bool) {
+    self.navigationItem.leftBarButtonItem?.isEnabled = value
+    self.deleteButton.isEnabled = value
+    self.editButton.isEnabled = value
+  }
+  
   func setTitle(title: String) {
     self.title = title
   }
@@ -97,6 +107,10 @@ class PoolViewController: UIViewController, PoolView {
   
   func navigateToEditPoolPage() {
     self.navigationController?.pushViewController(PoolFormViewController(model: self.model), animated: true)
+  }
+  
+  func navigateToHomePage() {
+    self.navigationController?.popViewController(animated: true)
   }
   
   // MARK - UIButton handlers

@@ -71,3 +71,8 @@
 
 - Navigation, lots of data sources.
 - Doesn't solve shared state.
+
+
+// need router - so i can navigate from presenter rather then vc's (since vc needs to know stack).
+// basic view component
+// merge data source

@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  TableViewController.swift
 //  mini-pools-ios
 //
 //  Created by Davidson, Shay on 28/01/2019.
@@ -9,9 +9,26 @@
 import UIKit
 import SnapKit
 
-class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, HomeView {
-  private lazy var presenter = HomePresenter(view: self, model: HomeModel(pools: [], searchFilter: nil))
-  private var dataSource: HomeDataSource?
+protocol TableViewPresenter {
+  func refreshTable()
+  func setTableFilter(_ filter: String)
+  func selectedTableItem(at indexPath: IndexPath)
+}
+
+class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, HomeView {
+
+  // MARK: Init
+  
+  var presenter: TableViewPresenter!
+  var dataSource: UITableViewDataSource?
+  
+  init() {
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   // MARK: Layout
   
@@ -45,23 +62,26 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = UIColor.white
-    self.title = "Mini Pools"
     self.searchBar.delegate = self
     self.tableView.delegate = self
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.presenter.loadPools() // TODO: who initiates this?
+    self.presenter.refreshTable()
   }
   
   // MARK - HomeView
+  
+  func setTitle(_ title: String) {
+    self.title = title
+  }
   
   func toggleSpinner(value: Bool) {
     UIApplication.shared.isNetworkActivityIndicatorVisible = value
   }
   
-  func setDataSource(_ dataSource: HomeDataSource) { // TODO bahahaha
+  func setDataSource(_ dataSource: HomeDataSource) { 
     self.dataSource = dataSource
     self.tableView.dataSource = dataSource
     self.tableView.reloadData()
@@ -78,12 +98,12 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   // MARK - UISearchBarDelegate
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    self.presenter.filterPools(stringFilter: searchText)
+    self.presenter.setTableFilter(searchText)
   }
   
   // MARK - UITableViewDelegate
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    self.presenter.selectedItem(at: indexPath)
+    self.presenter.selectedTableItem(at: indexPath)
   }
 }

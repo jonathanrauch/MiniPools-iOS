@@ -93,7 +93,7 @@ class PoolViewController: UIViewController, PoolView {
     self.editButton.isEnabled = value
   }
   
-  func setTitle(title: String) {
+  func setTitle(_ title: String) {
     self.title = title
   }
   

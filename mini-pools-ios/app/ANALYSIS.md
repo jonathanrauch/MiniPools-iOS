@@ -76,3 +76,6 @@
 // need router - so i can navigate from presenter rather then vc's (since vc needs to know stack).
 // basic view component
 // merge data source
+// who initialized? refreshPools via view or "viewDidAppear" call to presenter that initiates refresh
+// cyclic depedency between view and presenter , argh. (need view in order to init presenter, need presenter in order to init view)
+// PresetnedViewController

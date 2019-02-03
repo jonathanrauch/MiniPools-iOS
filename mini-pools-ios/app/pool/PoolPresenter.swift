@@ -11,7 +11,7 @@ import UIKit
 protocol PoolView: class {
   func toggleSpinner(value: Bool)
   func toggleInteraction(value: Bool)
-  func setTitle(title: String)
+  func setTitle(_ title: String)
   func setName(name: String)
   func setAmount(amount: String)
   func navigateToEditPoolPage()
@@ -25,12 +25,17 @@ class PoolPresenter {
   required init(view: PoolView, model: PoolModel) {
     self.view = view
     self.model = model
+    self.setupView()
+  }
+  
+  private func setupView() {
+//    self.view.setTitle("Mini-Pools")
   }
   
   // MARK - API
   
   func renderPool() {
-    self.view.setTitle(title: self.model.name)
+    self.view.setTitle(self.model.name)
     self.view.setName(name: self.model.name)
     self.view.setAmount(amount: self.model.formattedAmount)
   }

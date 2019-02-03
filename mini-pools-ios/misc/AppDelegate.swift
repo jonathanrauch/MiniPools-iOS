@@ -15,10 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var navController: UINavigationController?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+    
+    // intiial objects
+    let initialModel = HomeModel(pools: [], searchFilter: nil)
+    let initialViewController = TableViewController()
+    let initialPresenter = HomePresenter(view: initialViewController, model: initialModel)
+    initialViewController.presenter = initialPresenter
+    
     // setup navigation controller
-    let navController = UINavigationController()
-    navController.viewControllers = [HomeViewController()]
+    let navController = UINavigationController(rootViewController: initialViewController)
     self.navController = navController
     
     // setup window

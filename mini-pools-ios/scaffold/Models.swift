@@ -22,8 +22,8 @@ struct PoolModel {
   init(dictionary: JSON) {
     self.id = dictionary["id"].intValue
     self.name = dictionary["name"].stringValue
-    self.goalAmountValue = dictionary["goalAmountValue"].intValue
-    self.goalAmountCurrency = dictionary["goalAmountCurrency"].stringValue
+    self.goalAmountValue = dictionary["goalAmountValue"].int
+    self.goalAmountCurrency = dictionary["goalAmountCurrency"].string
     self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
     self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
     

@@ -9,7 +9,9 @@
 import UIKit
 import SnapKit
 
-class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, HomeView {
+  private lazy var presenter = HomePresenter(view: self, model: HomeModel(pools: [], searchFilter: nil))
+  private var dataSource: HomeDataSource?
   
   // MARK: Scaffold - don't touch this - hammer time! 🔨
   
@@ -46,38 +48,42 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     self.title = "Mini Pools"
     self.searchBar.delegate = self
     self.tableView.delegate = self
-    self.tableView.dataSource = self
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    // IMPLEMENT (fetch and render pools, show ios top-bar activity indicator while fetching - `UIApplication.shared.isNetworkActivityIndicatorVisible = value`)
+    self.presenter.loadPools()
+  }
+  
+  // MARK - HomeView
+  
+  func toggleSpinner(value: Bool) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = value
+  }
+  
+  func setDataSource(_ dataSource: HomeDataSource) {
+    self.dataSource = dataSource
+    self.tableView.dataSource = dataSource
+    self.tableView.reloadData()
+  }
+  
+  func navigateToCreatePoolPage() {
+    self.navigationController?.pushViewController(PoolFormViewController(), animated: true)
+  }
+  
+  func navigateToPoolPage(_ pool: PoolModel) {
+    self.navigationController?.pushViewController(PoolViewController(), animated: true)
   }
   
   // MARK - UISearchBarDelegate
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    // IMPLEMENT (filtering by pool name)
+    self.presenter.filterPools(stringFilter: searchText)
   }
   
   // MARK - UITableViewDelegate
   
-  func tableView(_tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-    // IMPLEMENT (push pool page to navigation stack)
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    self.presenter.selectedItem(at: indexPath)
   }
-  
-  // MARK - UITableViewDataSource
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // IMPLEMENT (pools count)
-    return 0
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "poolCell")
-    cell.textLabel?.text = "pool" // IMPLEMENT (pool name)
-    cell.detailTextLabel?.text = "$0.00" // IMPLEMENT (pool amount)
-    return cell
-  }
-  
 }

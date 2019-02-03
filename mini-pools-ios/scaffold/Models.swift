@@ -8,6 +8,8 @@
 
 import SwiftyJSON
 
+// MARK - PoolModel
+
 struct PoolModel {
   var id: Int
   var name: String
@@ -20,8 +22,8 @@ struct PoolModel {
   init(dictionary: JSON) {
     self.id = dictionary["id"].intValue
     self.name = dictionary["name"].stringValue
-    self.goalAmountValue = dictionary["goalAmountValue"].intValue
-    self.goalAmountCurrency = dictionary["goalAmountCurrency"].stringValue
+    self.goalAmountValue = dictionary["goalAmountValue"].int
+    self.goalAmountCurrency = dictionary["goalAmountCurrency"].string
     self.createdAt = DateUtil.initDate(string: dictionary["createdAt"].stringValue)!
     self.updatedAt = DateUtil.initDate(string: dictionary["updatedAt"].stringValue)!
     
@@ -31,6 +33,20 @@ struct PoolModel {
     }
   }
 }
+
+extension PoolModel {
+  var hasGoal: Bool {
+    return self.goalAmountValue != nil
+  }
+  
+  var contributionsSum: Int {
+    return self.contributions.reduce(0) { (sum, contribution) -> Int in
+      return sum + contribution.amountValue
+    }
+  }
+}
+
+// MARK - ContributionModel
 
 struct ContributionModel {
   var id: Int

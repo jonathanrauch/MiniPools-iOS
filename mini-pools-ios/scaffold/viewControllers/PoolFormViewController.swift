@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum PoolFormType {
+  case create
+  case edit
+}
+
 class PoolFormViewController: UIViewController {
   
   // MARK: Scaffold - don't touch this - hammer time! 🔨

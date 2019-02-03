@@ -24,6 +24,8 @@ class HomePresenter {
     self.model = model
   }
   
+  // MARK - API
+  
   func loadPools() {
     self.view.toggleSpinner(value: true)
     API.fetchPools { [unowned self] pools in

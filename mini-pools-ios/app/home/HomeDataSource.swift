@@ -55,7 +55,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
     case .pools?:
       let pool = self.filteredPools[indexPath.item]
       cell.textLabel?.text = pool.name
-      cell.detailTextLabel?.text = pool.hasGoal ? "$\(pool.contributionsSum) / $\(pool.goalAmountValue!)" : "$\(pool.contributionsSum)"
+      cell.detailTextLabel?.text = pool.formattedAmount
     case .none: break
     }
     return cell

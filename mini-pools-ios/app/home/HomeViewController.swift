@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   private lazy var presenter = HomePresenter(view: self, model: HomeModel(pools: [], searchFilter: nil))
   private var dataSource: HomeDataSource?
   
-  // MARK: Scaffold - don't touch this - hammer time! 🔨
+  // MARK: Layout
   
   private let searchBar = UISearchBar()
   private let tableView = UITableView()
@@ -52,7 +52,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.presenter.loadPools()
+    self.presenter.loadPools() // TODO: who initiates this?
   }
   
   // MARK - HomeView
@@ -61,18 +61,18 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     UIApplication.shared.isNetworkActivityIndicatorVisible = value
   }
   
-  func setDataSource(_ dataSource: HomeDataSource) {
+  func setDataSource(_ dataSource: HomeDataSource) { // TODO bahahaha
     self.dataSource = dataSource
     self.tableView.dataSource = dataSource
     self.tableView.reloadData()
   }
   
-  func navigateToCreatePoolPage() {
+  func navigateToCreatePoolPage() { // TODO: navigation?
     self.navigationController?.pushViewController(PoolFormViewController(), animated: true)
   }
   
   func navigateToPoolPage(_ pool: PoolModel) {
-    self.navigationController?.pushViewController(PoolViewController(), animated: true)
+    self.navigationController?.pushViewController(PoolViewController(model: pool), animated: true)
   }
   
   // MARK - UISearchBarDelegate

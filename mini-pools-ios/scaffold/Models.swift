@@ -44,6 +44,10 @@ extension PoolModel {
       return sum + contribution.amountValue
     }
   }
+  
+  var formattedAmount: String {
+    return self.hasGoal ? "$\(self.contributionsSum) / $\(self.goalAmountValue!)" : "$\(self.contributionsSum)"
+  }
 }
 
 // MARK - ContributionModel

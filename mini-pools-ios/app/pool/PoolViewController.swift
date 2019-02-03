@@ -8,9 +8,21 @@
 
 import UIKit
 
-class PoolViewController: UIViewController {
+class PoolViewController: UIViewController, PoolView {
   
-  // MARK: Scaffold - don't touch this - hammer time! 🔨
+  private lazy var presenter: PoolPresenter = PoolPresenter(view: self, model: model)
+  private let model: PoolModel
+  
+  init(model: PoolModel) {
+    self.model = model
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  // MARK: Layout
   
   private let nameLabel = UILabel()
   private let amountLabel = UILabel()
@@ -66,20 +78,35 @@ class PoolViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.title = "" // IMPLEMENT (pool name)
-    
-    self.nameLabel.text = "pool" // IMPLEMENT (pool name)
-    self.amountLabel.text = "$0 / $0" // IMPLEMENT (accumulated amount + goal)
+    self.presenter.renderPool()
+  }
+  
+  // MARK: PoolView
+  
+  func setTitle(title: String) {
+    self.title = title
+  }
+  
+  func setName(name: String) {
+    self.nameLabel.text = name
+  }
+  
+  func setAmount(amount: String) {
+     self.amountLabel.text = amount
+  }
+  
+  func navigateToEditPoolPage() {
+    self.navigationController?.pushViewController(PoolFormViewController(model: self.model), animated: true)
   }
   
   // MARK - UIButton handlers
   
   @objc func handleDelete() {
-    // IMPLEMENT (delete action)
+    self.presenter.selectedDelete()
   }
   
   @objc func handleEdit() {
-    // IMPLEMENT (edit action)
+    self.presenter.selectedEdit()
   }
   
 }

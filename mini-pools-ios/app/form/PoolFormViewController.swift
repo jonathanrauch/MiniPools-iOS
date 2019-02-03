@@ -15,7 +15,20 @@ enum PoolFormType {
 
 class PoolFormViewController: UIViewController {
   
-  // MARK: Scaffold - don't touch this - hammer time! 🔨
+//  private lazy var presenter: PoolPresenter = PoolPresenter(view: self, model: model)
+  private let model: PoolModel?
+  
+  init(model: PoolModel? = nil) {
+    self.model = model
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  
+  // MARK: Layout
   
   private let nameLabel = UILabel()
   private let goalAmountLabel = UILabel()

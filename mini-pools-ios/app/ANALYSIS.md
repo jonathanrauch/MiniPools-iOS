@@ -33,6 +33,7 @@
 - Presenter that contains both view (by protocol) and model.
 - API requests in Presenter layer.
 - `HomeDataSource` - so the View layer won't hold a shared state of the pools.
+- Started with not very dumb views, made them dumber and generic.
 
 ## Analysis
 
@@ -49,6 +50,7 @@
 - `HomeModel` - because I can't mutate the model if it's a collection...
 - Immutability ?? (TODO).
 - Some of the flow logic still remains in the VC (who initiates the first call to the presenter?) SOLVEABLE? TODO
+- The VC/View layer are not actually dumb since the VC contains the model.
 
 ### Things which the architecture doesn't really solve.
 

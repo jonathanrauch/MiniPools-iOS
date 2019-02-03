@@ -65,7 +65,7 @@ class API {
     }
   }
   
-  static func updatePool(poolId: String, poolName: String, goalAmountValue: Int? = nil, completion: @escaping (PoolModel) -> Void) {
+  static func updatePool(poolId: Int, poolName: String, goalAmountValue: Int? = nil, completion: @escaping (PoolModel) -> Void) {
     let parameters: Parameters = [
       API.nameParam: poolName,
       API.amountValueParam: goalAmountValue as Any
@@ -83,7 +83,7 @@ class API {
     }
   }
   
-  static func deletePool(poolId: String, completion: @escaping () -> Void) {
+  static func deletePool(poolId: Int, completion: @escaping () -> Void) {
     Alamofire.request("\(API.baseServerUrl)\(API.poolsPath)/\(poolId)", method: .delete, encoding: JSONEncoding.default).responseJSON { response in
         completion()
       }

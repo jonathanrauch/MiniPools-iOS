@@ -15,6 +15,10 @@ struct HomeModel {
     self.filter = filter
   }
   
+  func getPoolById(_ id: Int) -> PoolModel? {
+    return self.pools.first { $0.id == id }
+  }
+  
   mutating func setFilter(_ filter: String) {
     self.filter = (filter.isEmpty ) ? nil : filter
   }

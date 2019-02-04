@@ -46,6 +46,7 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
   
   private let searchBar = UISearchBar()
   private let tableView = UITableView()
+  private let refreshControl = UIRefreshControl()
   
   override func loadView() {
     super.loadView()
@@ -77,6 +78,8 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
     self.searchBar.delegate = self
     self.tableView.delegate = self
     self.tableView.dataSource = self.presenter
+    self.tableView.refreshControl = refreshControl
+    self.refreshControl.addTarget(self, action: #selector(onRefreshPull), for: .valueChanged)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +95,11 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
   
   func toggleSpinner(value: Bool) {
     UIApplication.shared.isNetworkActivityIndicatorVisible = value
+    if value {
+      self.refreshControl.beginRefreshing()
+    } else {
+      self.refreshControl.endRefreshing()
+    }
   }
   
   func refreshTable() {
@@ -114,5 +122,11 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.presenter.selectedTableItem(at: indexPath)
+  }
+  
+  // MARK - Private
+  
+  @objc func onRefreshPull() {
+    self.presenter.loadData()
   }
 }

@@ -90,8 +90,24 @@ class HomePresenter: NSObject, TableViewPresenter {
       let pool = self.model.filteredPools[indexPath.item]
       cell.setTitle(pool.name!)
       cell.setSubtitle(pool.formattedAmount)
+      cell.setBackground(colorForPoolId(poolId: pool.id!))
     case .none: break
     }
     return cell
+  }
+  
+  // MARK - Cell colors
+  
+  func colorForPoolId(poolId: Int) -> UIColor {
+    let pool = self.model.getPoolById(poolId)!
+    let oldPool = self.previousModel?.getPoolById(poolId)
+    
+    if pool.reachedGoal {
+      return UIColor(red: 220/255, green: 255/255, blue: 213/255, alpha: 1)
+    } else if let oldPool = oldPool, oldPool.name != pool.name || oldPool.contributionsSum != pool.contributionsSum {
+      return UIColor(red: 197/255, green: 215/255, blue: 255/255, alpha: 1)
+    } else {
+      return UIColor.white
+    }
   }
 }

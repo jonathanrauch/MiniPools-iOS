@@ -61,6 +61,10 @@ extension PoolModel {
     }
   }
   
+  var reachedGoal: Bool {
+    return hasGoal && contributionsSum >= self.goalAmountValue!
+  }
+  
   var formattedAmount: String {
     return self.hasGoal ? "$\(self.contributionsSum) / $\(self.goalAmountValue!)" : "$\(self.contributionsSum)"
   }

@@ -38,7 +38,7 @@ class PoolPresenter: NSObject, DetailsViewPresenter {
     self.view.addButton(text: "Delete") { [unowned self] in
       self.view.toggleSpinner(value: true)
       self.view.toggleInteraction(value: false)
-      API.deletePool(poolId: self.model.id) { [unowned self] in
+      API.deletePool(poolId: self.model.id!) { [unowned self] in
         self.view.toggleSpinner(value: false)
         self.view.toggleInteraction(value: true)
         self.router.popViewController(animated: true)

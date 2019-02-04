@@ -45,14 +45,20 @@ class PoolFormPresenter: NSObject, FormViewPresenter {
     self.view.addField(label: Fields.goal.title, placeholder: Fields.goal.isRequired ? "required" : "optional", prefilledValue: self.model?.goalAmountValue != nil ? "\(self.model!.goalAmountValue!)" : nil)
   }
   
-  func setFieldValue(at index: Int, value: String) {
-    
+  func changedFieldValue(at index: Int, value: String) {
+    switch (index) {
+    case Fields.name.rawValue: self.model!.name = value
+    case Fields.goal.rawValue: self.model!.goalAmountValue = Int(value)
+    default: break
+    }
   }
   
   func selectedAction() {
     fatalError("needs to be overriden")
   }
 }
+
+// MARK - Create
 
 class CreatePoolPresenter: PoolFormPresenter {
   required init(view: FormView, router: UINavigationController) {
@@ -64,7 +70,20 @@ class CreatePoolPresenter: PoolFormPresenter {
     self.view.setTitle("Create a pool")
     self.view.setActionTitle("Create")
   }
+  
+  override func selectedAction() {
+    self.view.toggleSpinner(value: true)
+    self.view.toggleInteraction(value: false)
+    let model = self.model as! NewPoolModel
+    API.createPool(poolName: model.name!, goalAmountValue: model.goalAmountValue, completion: { [unowned self] pool in
+      self.view.toggleSpinner(value: false)
+      self.view.toggleInteraction(value: true)
+      self.router.popViewController(animated: true)
+    })
+  }
 }
+
+// MARK - Edit
 
 class EditPoolPresenter: PoolFormPresenter {
   required init(view: FormView, model: PoolModel, router: UINavigationController) {
@@ -75,6 +94,17 @@ class EditPoolPresenter: PoolFormPresenter {
     super.setup()
     self.view.setTitle(self.model!.name!)
     self.view.setActionTitle("Save")
+  }
+  
+  override func selectedAction() {
+    self.view.toggleSpinner(value: true)
+    self.view.toggleInteraction(value: false)
+    let model = self.model as! PoolModel
+    API.updatePool(poolId: model.id!, poolName: model.name!, goalAmountValue: model.goalAmountValue, completion: { [unowned self] pool in
+      self.view.toggleSpinner(value: false)
+      self.view.toggleInteraction(value: true)
+      self.router.popViewController(animated: true)
+    })
   }
 }
 

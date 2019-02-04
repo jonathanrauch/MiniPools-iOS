@@ -41,7 +41,7 @@ class HomePresenter: NSObject, TableViewPresenter {
     }
   }
   
-  func setTableFilter(_ filter: String) {
+  func changedTableFilter(_ filter: String) {
     self.model.setFilter(filter)
   }
   

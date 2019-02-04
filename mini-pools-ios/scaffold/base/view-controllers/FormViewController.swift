@@ -11,7 +11,7 @@ import SnapKit
 
 protocol FormViewPresenter {
   func setup()
-  func setFieldValue(at index: Int, value: String)
+  func changedFieldValue(at index: Int, value: String)
   func selectedAction()
 }
 
@@ -24,7 +24,7 @@ protocol FormView: class {
   func shakeField(at index: Int)
 }
 
-class FormViewController: UIViewController, UITextFieldDelegate, FormView {
+class FormViewController: UIViewController, FormView {
   
   // MARK: Init
   
@@ -114,6 +114,7 @@ class FormViewController: UIViewController, UITextFieldDelegate, FormView {
     textField.backgroundColor = UIColor.lightGray
     textField.placeholder = placeholder
     textField.text = prefilledValue
+    textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     
     self.fields.append((label: labelView, textField: textField))
   }
@@ -121,8 +122,15 @@ class FormViewController: UIViewController, UITextFieldDelegate, FormView {
   func shakeField(at index: Int) {
     self.fields[index].textField.shake()
   }
+
   
   // MARK - Private
+  
+  @objc func textFieldDidChange(textField: UITextField) {
+    if let textFieldIndex = self.fields.firstIndex(where: { $0.textField == textField }) {
+      self.presenter.changedFieldValue(at: textFieldIndex, value: textField.text ?? "")
+    }
+  }
   
   @objc func handleAction() {
     self.presenter.selectedAction()

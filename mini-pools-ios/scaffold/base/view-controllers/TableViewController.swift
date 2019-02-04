@@ -12,7 +12,7 @@ import SnapKit
 protocol TableViewPresenter: UITableViewDataSource {
   func setup()
   func loadData()
-  func setTableFilter(_ filter: String)
+  func changedTableFilter(_ filter: String)
   func selectedTableItem(at indexPath: IndexPath)
 }
 
@@ -100,7 +100,7 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
   // MARK - UISearchBarDelegate
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    self.presenter.setTableFilter(searchText)
+    self.presenter.changedTableFilter(searchText)
   }
   
   // MARK - UITableViewDelegate

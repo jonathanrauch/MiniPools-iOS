@@ -8,12 +8,6 @@
 
 import UIKit
 
-protocol HomeView: class {
-  func setTitle(_ title: String)
-  func toggleSpinner(value: Bool)
-  func refreshTable()
-}
-
 class HomePresenter: NSObject, TableViewPresenter {
   
   enum HomeTableViewSection: Int, CaseIterable {
@@ -21,23 +15,22 @@ class HomePresenter: NSObject, TableViewPresenter {
     case pools = 1
   }
 
-  unowned let view: HomeView
+  unowned let view: TableView
   var model: HomeModel
   let router: UINavigationController
   
-  required init(view: HomeView, model: HomeModel, router: UINavigationController) {
+  required init(view: TableView, model: HomeModel, router: UINavigationController) {
     self.view = view
     self.model = model
     self.router = router
     super.init()
-    self.setupView()
-  }
-  
-  private func setupView() {
-    self.view.setTitle("Mini-Pools")
   }
   
   // MARK - API
+  
+  func setup() {
+    self.view.setTitle("Mini-Pools")
+  }
   
   func loadData() {
     self.view.toggleSpinner(value: true)
@@ -57,8 +50,11 @@ class HomePresenter: NSObject, TableViewPresenter {
     case .action?:
       self.router.pushViewController(PoolFormViewController(), animated: true)
     case .pools?:
-      let pool = self.model.pools[indexPath.item]
-      self.router.pushViewController(PoolViewController(model: pool), animated: true)
+      let model = self.model.pools[indexPath.item]
+      let view = DetailsViewController()
+      let presenter = PoolPresenter(view: view, model: model, router: self.router)
+      view.presenter = presenter
+      self.router.pushViewController(view, animated: true)
     case .none:
       break
     }

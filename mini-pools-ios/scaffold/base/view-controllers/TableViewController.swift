@@ -10,16 +10,27 @@ import UIKit
 import SnapKit
 
 protocol TableViewPresenter: UITableViewDataSource {
+  func setup()
   func loadData()
   func setTableFilter(_ filter: String)
   func selectedTableItem(at indexPath: IndexPath)
 }
 
-class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, HomeView {
+protocol TableView: class {
+  func setTitle(_ title: String)
+  func toggleSpinner(value: Bool)
+  func refreshTable()
+}
+
+class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, TableView {
 
   // MARK: Init
   
-  var presenter: TableViewPresenter!
+  var presenter: TableViewPresenter! {
+    didSet {
+      presenter.setup()
+    }
+  }
   var dataSource: UITableViewDataSource?
   
   init() {

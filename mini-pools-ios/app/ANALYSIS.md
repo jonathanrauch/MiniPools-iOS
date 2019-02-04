@@ -81,3 +81,6 @@
 // PresetnedViewController
 / kvo for presenter? model doesn't notify
 // which kind of cell is presentation logic? maybe? felt weird about it
+// generic presenters / vcs
+// protocols defined in separate classes 
+// extending models - do you need a "view model" for each one?

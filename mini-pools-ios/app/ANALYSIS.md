@@ -80,3 +80,4 @@
 // cyclic depedency between view and presenter , argh. (need view in order to init presenter, need presenter in order to init view)
 // PresetnedViewController
 / kvo for presenter? model doesn't notify
+// which kind of cell is presentation logic? maybe? felt weird about it

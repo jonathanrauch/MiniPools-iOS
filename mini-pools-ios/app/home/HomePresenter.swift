@@ -42,7 +42,7 @@ class HomePresenter: NSObject, TableViewPresenter {
   func loadData() {
     self.view.toggleSpinner(value: true)
     API.fetchPools { [unowned self] pools in
-      self.model.pools = pools // TODO: immutable?
+      self.model.pools = pools
       self.view.refreshTable()
       self.view.toggleSpinner(value: false)
     }
@@ -79,14 +79,14 @@ class HomePresenter: NSObject, TableViewPresenter {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
+    let cell = SimpleTableViewCell()
     switch HomeTableViewSection(rawValue: indexPath.section) {
     case .action?:
-      cell.textLabel?.text = "+ Create a new pool"
+      cell.setTitle("+ Create a new pool")
     case .pools?:
       let pool = self.model.filteredPools[indexPath.item]
-      cell.textLabel?.text = pool.name
-      cell.detailTextLabel?.text = pool.formattedAmount
+      cell.setTitle(pool.name)
+      cell.setSubtitle(pool.formattedAmount)
     case .none: break
     }
     return cell

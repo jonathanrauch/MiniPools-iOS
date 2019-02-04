@@ -13,6 +13,7 @@
 		873B733721FF023D005E85C1 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B733621FF023D005E85C1 /* TableViewController.swift */; };
 		873B733D21FF1873005E85C1 /* PoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B733C21FF1873005E85C1 /* PoolViewController.swift */; };
 		873B734221FF1B1E005E85C1 /* PoolFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B734121FF1B1E005E85C1 /* PoolFormViewController.swift */; };
+		87744AD6220813A900DDA669 /* SimpleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87744AD5220813A900DDA669 /* SimpleTableViewCell.swift */; };
 		8786D29E2206DE01005C734E /* PoolPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8786D29D2206DE01005C734E /* PoolPresenter.swift */; };
 		87CDB5F42202ED1200CD295F /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CDB5F32202ED1200CD295F /* HomePresenter.swift */; };
 		87CDB5F62202F02300CD295F /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CDB5F52202F02300CD295F /* HomeModel.swift */; };
@@ -33,6 +34,7 @@
 		873B734121FF1B1E005E85C1 /* PoolFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolFormViewController.swift; sourceTree = "<group>"; };
 		873B734521FF2672005E85C1 /* INSTRUCTIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = INSTRUCTIONS.md; sourceTree = "<group>"; };
 		873B734621FF285B005E85C1 /* ANALYSIS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ANALYSIS.md; sourceTree = "<group>"; };
+		87744AD5220813A900DDA669 /* SimpleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewCell.swift; sourceTree = "<group>"; };
 		8786D29D2206DE01005C734E /* PoolPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoolPresenter.swift; sourceTree = "<group>"; };
 		87CDB5F32202ED1200CD295F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		87CDB5F52202F02300CD295F /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
@@ -116,18 +118,19 @@
 			path = form;
 			sourceTree = "<group>";
 		};
-		8786D2A02206FE97005C734E /* viewControllers */ = {
+		8786D2A02206FE97005C734E /* base */ = {
 			isa = PBXGroup;
 			children = (
+				87744AD5220813A900DDA669 /* SimpleTableViewCell.swift */,
 				873B733621FF023D005E85C1 /* TableViewController.swift */,
 			);
-			path = viewControllers;
+			path = base;
 			sourceTree = "<group>";
 		};
 		87D7237D21E7739C00FDAA74 /* scaffold */ = {
 			isa = PBXGroup;
 			children = (
-				8786D2A02206FE97005C734E /* viewControllers */,
+				8786D2A02206FE97005C734E /* base */,
 				87D7237E21E773AB00FDAA74 /* API.swift */,
 				87D7238121E7757A00FDAA74 /* Models.swift */,
 			);
@@ -282,6 +285,7 @@
 				873B734221FF1B1E005E85C1 /* PoolFormViewController.swift in Sources */,
 				87CDB5F62202F02300CD295F /* HomeModel.swift in Sources */,
 				7E52185A1FEA995D007B3985 /* Extensions.swift in Sources */,
+				87744AD6220813A900DDA669 /* SimpleTableViewCell.swift in Sources */,
 				87D7238221E7757A00FDAA74 /* Models.swift in Sources */,
 				87D7237F21E773AB00FDAA74 /* API.swift in Sources */,
 				873B733721FF023D005E85C1 /* TableViewController.swift in Sources */,

@@ -85,3 +85,5 @@
 // protocols defined in separate classes 
 // extending models - do you need a "view model" for each one?
 // generic set preseneters/ router
+// the presenter needs to know what are the view's prop to set them up manually, rather than the view having to ask for them and then be fully defined and rendered. may result in udnefined state because you forgot to update something from the presenter.
+

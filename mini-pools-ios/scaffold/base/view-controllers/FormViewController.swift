@@ -20,7 +20,7 @@ protocol FormView: class {
   func setActionTitle(_ title: String)
   func toggleSpinner(value: Bool)
   func toggleInteraction(value: Bool)
-  func addField(label: String, placeholder: String, prefilledValue: String)
+  func addField(label: String, placeholder: String?, prefilledValue: String?)
   func shakeField(at index: Int)
 }
 
@@ -52,6 +52,7 @@ class FormViewController: UIViewController, UITextFieldDelegate, FormView {
     self.view.backgroundColor = UIColor.white
     
     let button = UIButton()
+    button.backgroundColor = UIColor.gray
     button.setTitleColor(UIColor.white, for: .normal)
     button.setTitleColor(UIColor.lightGray, for: .disabled)
     button.setTitleColor(UIColor.yellow, for: .highlighted)
@@ -88,27 +89,33 @@ class FormViewController: UIViewController, UITextFieldDelegate, FormView {
     self.button?.setTitle(title, for: .normal)
   }
   
-  func addField(label: String, placeholder: String, prefilledValue: String) {
-    let label = UILabel()
+  func addField(label: String, placeholder: String?, prefilledValue: String?) {
+    let labelView = UILabel()
     let textField = UITextField()
-    self.view.addSubview(label)
+    self.view.addSubview(labelView)
     self.view.addSubview(textField)
     
     let lastSnapPoint = self.fields.isEmpty ? view.safeAreaLayoutGuide.snp.topMargin : self.fields.last!.textField.snp.bottom
     
-    label.snp.makeConstraints { make in
+    labelView.snp.makeConstraints { make in
       make.top.equalTo(lastSnapPoint).offset(20)
       make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin).offset(20)
       make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin).offset(-20)
     }
   
     textField.snp.makeConstraints { make in
-      make.top.equalTo(label.snp.bottom)
+      make.top.equalTo(labelView.snp.bottom)
       make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin).offset(20)
       make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin).offset(-20)
+      make.bottom.equalTo(self.button!.snp.top).offset(-40).priority(500 + self.fields.count)
     }
     
-    self.fields.append((label: label, textField: textField))
+    labelView.text = label
+    textField.backgroundColor = UIColor.lightGray
+    textField.placeholder = placeholder
+    textField.text = prefilledValue
+    
+    self.fields.append((label: labelView, textField: textField))
   }
   
   func shakeField(at index: Int) {

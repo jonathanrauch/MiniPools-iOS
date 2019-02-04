@@ -60,3 +60,6 @@ extension UIControl {
     objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
   }
 }
+
+typealias ActionHandler = () -> Void
+

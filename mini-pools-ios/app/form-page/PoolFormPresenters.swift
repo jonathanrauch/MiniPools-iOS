@@ -1,5 +1,5 @@
 //
-//  PoolPresenter.swift
+//  PoolFormPresenters.swift
 //  mini-pools-ios
 //
 //  Created by Davidson, Shay on 31/01/2019.
@@ -8,7 +8,26 @@
 
 import UIKit
 
-class PoolPresenter: NSObject, DetailsViewPresenter {
+class CreatePoolPresenter: NSObject, DetailsViewPresenter {
+  unowned let view: DetailsView
+  var model: NewPoolModel
+  let router: UINavigationController
+  
+  required init(view: DetailsView, router: UINavigationController) {
+    self.view = view
+    self.model = NewPoolModel()
+    self.router = router
+    super.init()
+  }
+  
+  // MARK - API
+  
+  func setup() {
+   
+  }
+}
+
+class EditPoolPresenter: NSObject, DetailsViewPresenter {
   unowned let view: DetailsView
   var model: PoolModel
   let router: UINavigationController
@@ -46,3 +65,4 @@ class PoolPresenter: NSObject, DetailsViewPresenter {
     }
   }
 }
+

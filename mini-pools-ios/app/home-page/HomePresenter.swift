@@ -11,7 +11,7 @@ import UIKit
 class HomePresenter: NSObject, TableViewPresenter {
   
   enum HomeTableViewSection: Int, CaseIterable {
-    case action = 0
+    case create = 0
     case pools = 1
   }
 
@@ -47,8 +47,11 @@ class HomePresenter: NSObject, TableViewPresenter {
   
   func selectedTableItem(at indexPath: IndexPath) {
     switch HomeTableViewSection(rawValue: indexPath.section) {
-    case .action?:
-      self.router.pushViewController(PoolFormViewController(), animated: true)
+    case .create?:
+      let view = FormViewController()
+      let presenter = CreatePoolPresenter(view: view, router: self.router)
+      view.presenter = presenter
+      self.router.pushViewController(view, animated: true)
     case .pools?:
       let model = self.model.pools[indexPath.item]
       let view = DetailsViewController()
@@ -68,7 +71,7 @@ class HomePresenter: NSObject, TableViewPresenter {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     switch HomeTableViewSection(rawValue: section) {
-    case .action?: return 1
+    case .create?: return 1
     case .pools?:  return self.model.filteredPools.count
     case .none:    return 0
     }
@@ -77,7 +80,7 @@ class HomePresenter: NSObject, TableViewPresenter {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = SimpleTableViewCell()
     switch HomeTableViewSection(rawValue: indexPath.section) {
-    case .action?:
+    case .create?:
       cell.setTitle("+ Create a new pool")
     case .pools?:
       let pool = self.model.filteredPools[indexPath.item]

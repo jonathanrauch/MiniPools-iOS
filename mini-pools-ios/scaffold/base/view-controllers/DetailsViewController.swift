@@ -9,8 +9,6 @@
 import UIKit
 import SnapKit
 
-typealias ActionHandler = () -> Void
-
 protocol DetailsViewPresenter {
   func setup()
 }

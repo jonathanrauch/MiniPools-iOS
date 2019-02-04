@@ -10,6 +10,11 @@ import SwiftyJSON
 
 // MARK - PoolModel
 
+struct NewPoolModel {
+  var name: String?
+  var goalAmountValue: Int?
+}
+
 struct PoolModel {
   var id: Int
   var name: String

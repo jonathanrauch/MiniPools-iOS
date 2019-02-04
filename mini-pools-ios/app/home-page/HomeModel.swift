@@ -8,7 +8,7 @@
 
 struct HomeModel {
   var pools: [PoolModel]
-  private var filter: String? = nil
+  var filter: String? = nil
   
   init(pools: [PoolModel], filter: String? = nil) {
     self.pools = pools

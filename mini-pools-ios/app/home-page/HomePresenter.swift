@@ -17,6 +17,7 @@ class HomePresenter: NSObject, TableViewPresenter {
 
   unowned let view: TableView
   var model: HomeModel
+  var previousModel: HomeModel?
   let router: UINavigationController
   
   required init(view: TableView, model: HomeModel, router: UINavigationController) {
@@ -30,12 +31,14 @@ class HomePresenter: NSObject, TableViewPresenter {
   
   func setup() {
     self.view.setTitle("Mini-Pools")
+    self.view.setSearchText(self.model.filter)
   }
   
   func loadData() {
     self.view.toggleSpinner(value: true)
     API.fetchPools { [unowned self] pools in
-      self.model.pools = pools
+      self.previousModel = self.model
+      self.model = HomeModel(pools: pools, filter: self.model.filter)
       self.view.refreshTable()
       self.view.toggleSpinner(value: false)
     }
@@ -43,6 +46,7 @@ class HomePresenter: NSObject, TableViewPresenter {
   
   func changedTableFilter(_ filter: String) {
     self.model.setFilter(filter)
+    self.view.refreshTable()
   }
   
   func selectedTableItem(at indexPath: IndexPath) {

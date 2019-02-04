@@ -20,6 +20,7 @@ protocol TableView: class {
   func setTitle(_ title: String)
   func toggleSpinner(value: Bool)
   func refreshTable()
+  func setSearchText(_ text: String?)
 }
 
 class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, TableView {
@@ -97,6 +98,10 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
     let range = NSMakeRange(0, self.tableView.numberOfSections)
     let sections = NSIndexSet(indexesIn: range)
     self.tableView.reloadSections(sections as IndexSet, with: .automatic)
+  }
+  
+  func setSearchText(_ text: String?) {
+    self.searchBar.text = text
   }
 
   // MARK - UISearchBarDelegate

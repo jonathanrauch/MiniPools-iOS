@@ -21,4 +21,8 @@ class SimpleTableViewCell: UITableViewCell {
   func setSubtitle(_ text: String) {
     self.detailTextLabel?.text = text
   }
+  
+  func setBackground(_ color: UIColor) {
+    self.backgroundColor = color
+  }
 }

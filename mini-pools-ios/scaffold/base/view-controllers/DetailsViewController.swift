@@ -20,7 +20,7 @@ protocol DetailsView: class {
   func toggleSpinner(value: Bool)
   func toggleInteraction(value: Bool)
   func addDetail(text: String, size: DetailsLabelSize)
-  func addButton(text: String, handler: ActionHandler)
+  func addButton(text: String, handler: @escaping ActionHandler)
 }
 
 enum DetailsLabelSize: CGFloat {
@@ -90,44 +90,37 @@ class DetailsViewController: UIViewController, DetailsView {
     self.labels.append(detailsLabel)
   }
   
-  func addButton(text: String, handler: () -> Void) {
+  func addButton(text: String, handler: @escaping ActionHandler) {
+    let button = UIButton()
+    self.view.addSubview(button)
     
+    button.backgroundColor = UIColor.gray
+    button.setTitle(text, for: .normal)
+    button.setTitleColor(UIColor.white, for: .normal)
+    button.setTitleColor(UIColor.lightGray, for: .disabled)
+    button.setTitleColor(UIColor.yellow, for: .highlighted)
+    
+    var lastSnapPoint: ConstraintRelatableTarget?
+    var offset: Int?
+    if self.labels.isEmpty && self.buttons.isEmpty {
+      lastSnapPoint = view.safeAreaLayoutGuide.snp.topMargin
+      offset = 20
+    } else if !self.buttons.isEmpty {
+      lastSnapPoint = self.buttons.last!.snp.bottom
+      offset = 20
+    } else {
+      lastSnapPoint = self.labels.last!.snp.bottom
+      offset = 40
+    }
+    
+    button.snp.makeConstraints { make in
+      make.top.equalTo(lastSnapPoint!).offset(offset!)
+      make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin).offset(20)
+      make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin).offset(-20)
+    }
+    
+    button.addAction(for: .touchUpInside, handler)
+    
+    self.buttons.append(button)
   }
 }
-//
-//
-//
-//self.view.addSubview(nameLabel)
-//self.view.addSubview(amountLabel)
-//self.view.addSubview(deleteButton)
-//self.view.addSubview(editButton)
-//
-//self.deleteButton.setTitle("Delete", for: .normal)
-//self.editButton.setTitle("Edit", for: .normal)
-//
-//self.nameLabel.font = self.nameLabel.font.withSize(30)
-//self.nameLabel.textAlignment = .center
-//self.amountLabel.textAlignment = .center
-//
-//
-//
-//self.amountLabel.snp.makeConstraints { make in
-//  make.top.equalTo(nameLabel.snp.bottom).offset(20)
-//  make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin)
-//  make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin)
-//}
-//
-//self.deleteButton.snp.makeConstraints { make in
-//  make.top.equalTo(amountLabel.snp.bottom).offset(30)
-//  make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin)
-//  make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin)
-//}
-//
-//self.editButton.snp.makeConstraints { make in
-//  make.top.equalTo(deleteButton.snp.bottom).offset(10)
-//  make.leading.equalTo(view.safeAreaLayoutGuide.snp.leadingMargin)
-//  make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailingMargin)
-//}
-//
-//self.deleteButton.addTarget(self, action: #selector(handleDelete), for: .touchUpInside)
-//self.editButton.addTarget(self, action: #selector(handleEdit), for: .touchUpInside)

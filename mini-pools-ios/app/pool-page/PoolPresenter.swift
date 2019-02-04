@@ -26,37 +26,19 @@ class PoolPresenter: NSObject, DetailsViewPresenter {
     self.view.setTitle(self.model.name)
     self.view.addDetail(text: self.model.name, size: .big)
     self.view.addDetail(text: self.model.formattedAmount, size: .small)
+    
+    self.view.addButton(text: "Edit") { [unowned self] in
+      //
+    }
+    
+    self.view.addButton(text: "Delete") { [unowned self] in
+      self.view.toggleSpinner(value: true)
+      self.view.toggleInteraction(value: false)
+      API.deletePool(poolId: self.model.id) { [unowned self] in
+        self.view.toggleSpinner(value: false)
+        self.view.toggleInteraction(value: true)
+        self.router.popViewController(animated: true)
+      }
+    }
   }
-  
-  // MARK - API
-//
-//  func renderPool() {
-//    self.view.setTitle(self.model.name)
-//    self.view.setName(name: self.model.name)
-//    self.view.setAmount(amount: self.model.formattedAmount)
-//  }
-//
-//  func selectedDelete() {
-//    self.view.toggleSpinner(value: true)
-//    self.view.toggleInteraction(value: false)
-//    API.deletePool(poolId: self.model.id) { [unowned self] in
-//      self.view.toggleSpinner(value: false)
-//      self.view.toggleInteraction(value: true)
-//      self.view.navigateToHomePage()
-//    }
-//  }
-//
-//  func selectedEdit() {
-//    self.view.navigateToEditPoolPage()
-//  }
-  
 }
-
-//
-//func navigateToEditPoolPage() {
-//  self.navigationController?.pushViewController(PoolFormViewController(model: self.model), animated: true)
-//}
-//
-//func navigateToHomePage() {
-//  self.navigationController?.popViewController(animated: true)
-//}

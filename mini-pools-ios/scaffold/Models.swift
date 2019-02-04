@@ -10,14 +10,19 @@ import SwiftyJSON
 
 // MARK - PoolModel
 
-struct NewPoolModel {
+protocol AbstractPoolModel {
+  var name: String? { get set }
+  var goalAmountValue: Int? { get set }
+}
+
+struct NewPoolModel: AbstractPoolModel {
   var name: String?
   var goalAmountValue: Int?
 }
 
-struct PoolModel {
+struct PoolModel: AbstractPoolModel {
   var id: Int
-  var name: String
+  var name: String?
   var goalAmountValue: Int?
   var goalAmountCurrency: String?
   var createdAt: Date

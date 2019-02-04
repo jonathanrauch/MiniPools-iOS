@@ -23,8 +23,8 @@ class PoolPresenter: NSObject, DetailsViewPresenter {
   // MARK - API
   
   func setup() {
-    self.view.setTitle(self.model.name)
-    self.view.addDetail(text: self.model.name, size: .big)
+    self.view.setTitle(self.model.name!)
+    self.view.addDetail(text: self.model.name!, size: .big)
     self.view.addDetail(text: self.model.formattedAmount, size: .small)
     
     self.view.addButton(text: "Edit") { [unowned self] in

@@ -20,7 +20,7 @@
     [x] Goal amount if available (show it as part of the amount field in a $0 / $50 format). Amounts should be integers.
   [x] There are also 2 available actions:
     [x] Delete - deletes the pool using the API request. 
-      [x] The user is automatically moved to the home page (forward transition) when the operation succeeds. 
+      [ ] The user is automatically moved to the home page (forward transition) when the operation succeeds. 
       [x] Show top-bar activity indicator while delete is underway. 
       [x] Delete button, edit button and nav-bar back button should be disabled while operation is underway.
     [x] Edit - takes the user to the edit pool screen (by push).

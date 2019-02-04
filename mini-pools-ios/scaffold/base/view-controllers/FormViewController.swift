@@ -20,7 +20,7 @@ protocol FormView: class {
   func setActionTitle(_ title: String)
   func toggleSpinner(value: Bool)
   func toggleInteraction(value: Bool)
-  func addField(label: String, prefilledValue: String)
+  func addField(label: String, placeholder: String, prefilledValue: String)
   func shakeField(at index: Int)
 }
 

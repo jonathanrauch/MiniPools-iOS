@@ -8,61 +8,38 @@
 
 import UIKit
 
-class CreatePoolPresenter: NSObject, DetailsViewPresenter {
-  unowned let view: DetailsView
-  var model: NewPoolModel
+class PoolFormPresenter: NSObject, FormViewPresenter {
+  unowned let view: FormView
+  var model: AbstractPoolModel?
   let router: UINavigationController
   
-  required init(view: DetailsView, router: UINavigationController) {
-    self.view = view
-    self.model = NewPoolModel()
-    self.router = router
-    super.init()
-  }
-  
-  // MARK - API
-  
-  func setup() {
-   
-  }
-}
-
-class EditPoolPresenter: NSObject, DetailsViewPresenter {
-  unowned let view: DetailsView
-  var model: PoolModel
-  let router: UINavigationController
-  
-  required init(view: DetailsView, model: PoolModel, router: UINavigationController) {
+  required init(view: FormView, model: AbstractPoolModel? = nil, router: UINavigationController) {
     self.view = view
     self.model = model
     self.router = router
     super.init()
   }
   
-  // MARK - API
-  
   func setup() {
-    self.view.setTitle(self.model.name)
-    self.view.addDetail(text: self.model.name, size: .big)
-    self.view.addDetail(text: self.model.formattedAmount, size: .small)
     
-    self.view.addButton(text: "Edit") { [unowned self] in
-      let model = self.model
-      let view = FormViewController()
-      let presenter = EditPoolPresenter(view: view, model: model, router: self.router)
-      view.presenter = presenter
-      self.router.pushViewController(view, animated: true)
-    }
-    
-    self.view.addButton(text: "Delete") { [unowned self] in
-      self.view.toggleSpinner(value: true)
-      self.view.toggleInteraction(value: false)
-      API.deletePool(poolId: self.model.id) { [unowned self] in
-        self.view.toggleSpinner(value: false)
-        self.view.toggleInteraction(value: true)
-        self.router.popViewController(animated: true)
-      }
-    }
   }
+  
+  func setFieldValue(at index: Int, value: String) {
+    
+  }
+  
+  func selectedAction() {
+    fatalError("needs to be overriden")
+  }
+}
+
+class CreatePoolPresenter: PoolFormPresenter {
+  required init(view: FormView, model: AbstractPoolModel? = nil, router: UINavigationController) {
+    super.init(view: view, model: NewPoolModel(), router: router)
+  }
+}
+
+class EditPoolPresenter: PoolFormPresenter {
+
 }
 

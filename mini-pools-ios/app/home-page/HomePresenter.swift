@@ -84,7 +84,7 @@ class HomePresenter: NSObject, TableViewPresenter {
       cell.setTitle("+ Create a new pool")
     case .pools?:
       let pool = self.model.filteredPools[indexPath.item]
-      cell.setTitle(pool.name)
+      cell.setTitle(pool.name!)
       cell.setSubtitle(pool.formattedAmount)
     case .none: break
     }

@@ -21,7 +21,7 @@ struct HomeModel {
   
   var filteredPools: [PoolModel] {
     if let filter = self.filter {
-      return self.pools.filter { $0.name.lowercased().contains(filter.lowercased()) }
+      return self.pools.filter { $0.name!.lowercased().contains(filter.lowercased()) }
     } else {
       return self.pools
     }

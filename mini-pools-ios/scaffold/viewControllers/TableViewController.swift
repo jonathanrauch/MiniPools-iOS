@@ -9,8 +9,8 @@
 import UIKit
 import SnapKit
 
-protocol TableViewPresenter {
-  func refreshTable()
+protocol TableViewPresenter: UITableViewDataSource {
+  func loadData()
   func setTableFilter(_ filter: String)
   func selectedTableItem(at indexPath: IndexPath)
 }
@@ -64,11 +64,12 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
     self.view.backgroundColor = UIColor.white
     self.searchBar.delegate = self
     self.tableView.delegate = self
+    self.tableView.dataSource = self.presenter
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    self.presenter.refreshTable()
+    self.presenter.loadData()
   }
   
   // MARK - HomeView
@@ -81,20 +82,10 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
     UIApplication.shared.isNetworkActivityIndicatorVisible = value
   }
   
-  func setDataSource(_ dataSource: HomeDataSource) { 
-    self.dataSource = dataSource
-    self.tableView.dataSource = dataSource
+  func refreshTable() {
     self.tableView.reloadData()
   }
-  
-  func navigateToCreatePoolPage() { // TODO: navigation?
-    self.navigationController?.pushViewController(PoolFormViewController(), animated: true)
-  }
-  
-  func navigateToPoolPage(_ pool: PoolModel) {
-    self.navigationController?.pushViewController(PoolViewController(model: pool), animated: true)
-  }
-  
+
   // MARK - UISearchBarDelegate
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

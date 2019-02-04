@@ -8,5 +8,22 @@
 
 struct HomeModel {
   var pools: [PoolModel]
-  var searchFilter: String? = nil
+  private var filter: String? = nil
+  
+  init(pools: [PoolModel], filter: String? = nil) {
+    self.pools = pools
+    self.filter = filter
+  }
+  
+  mutating func setFilter(_ filter: String) {
+    self.filter = (filter.isEmpty ) ? nil : filter
+  }
+  
+  var filteredPools: [PoolModel] {
+    if let filter = self.filter {
+      return self.pools.filter { $0.name.lowercased().contains(filter.lowercased()) }
+    } else {
+      return self.pools
+    }
+  }
 }

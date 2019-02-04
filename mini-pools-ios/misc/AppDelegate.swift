@@ -17,13 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
     // intiial objects
-    let initialModel = HomeModel(pools: [], searchFilter: nil)
+    let initialModel = HomeModel(pools: [], filter: nil)
     let initialViewController = TableViewController()
-    let initialPresenter = HomePresenter(view: initialViewController, model: initialModel)
-    initialViewController.presenter = initialPresenter
-    
-    // setup navigation controller
     let navController = UINavigationController(rootViewController: initialViewController)
+    let initialPresenter = HomePresenter(view: initialViewController, model: initialModel, router: navController)
+    initialViewController.presenter = initialPresenter
     self.navController = navController
     
     // setup window

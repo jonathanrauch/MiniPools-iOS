@@ -79,3 +79,4 @@
 // who initialized? refreshPools via view or "viewDidAppear" call to presenter that initiates refresh
 // cyclic depedency between view and presenter , argh. (need view in order to init presenter, need presenter in order to init view)
 // PresetnedViewController
+/ kvo for presenter? model doesn't notify

@@ -56,6 +56,22 @@ class PoolFormPresenter: NSObject, FormViewPresenter {
   func selectedAction() {
     fatalError("needs to be overriden")
   }
+  
+  // MARK - Internal
+  
+  func getInvalidations() -> [Fields] {
+    var fields: [Fields] = []
+    
+    if self.model!.name?.isEmpty ?? true {
+      fields.append(Fields.name)
+    }
+    
+    if self.model!.goalAmountValue != nil && self.model!.contributionsSum > self.model!.goalAmountValue! {
+      fields.append(Fields.goal)
+    }
+  
+    return fields
+  }
 }
 
 // MARK - Create
@@ -72,18 +88,23 @@ class CreatePoolPresenter: PoolFormPresenter {
   }
   
   override func selectedAction() {
-    self.view.toggleSpinner(value: true)
-    self.view.toggleInteraction(value: false)
-    let model = self.model as! NewPoolModel
-    API.createPool(poolName: model.name!, goalAmountValue: model.goalAmountValue, completion: { [unowned self] pool in
-      self.view.toggleSpinner(value: false)
-      self.view.toggleInteraction(value: true)
-      let model = pool
-      let view = DetailsViewController()
-      let presenter = PoolPresenter(view: view, model: model, router: self.router)
-      view.presenter = presenter
-      self.router.popAndPush(view, animated: true)
-    })
+    let invalidations = self.getInvalidations()
+    if invalidations.isEmpty {
+      self.view.toggleSpinner(value: true)
+      self.view.toggleInteraction(value: false)
+      let model = self.model as! NewPoolModel
+      API.createPool(poolName: model.name!, goalAmountValue: model.goalAmountValue, completion: { [unowned self] pool in
+        self.view.toggleSpinner(value: false)
+        self.view.toggleInteraction(value: true)
+        let model = pool
+        let view = DetailsViewController()
+        let presenter = PoolPresenter(view: view, model: model, router: self.router)
+        view.presenter = presenter
+        self.router.popAndPush(view, animated: true)
+      })
+    } else {
+      invalidations.forEach { self.view.shakeField(at: $0.rawValue )}
+    }
   }
 }
 
@@ -101,14 +122,19 @@ class EditPoolPresenter: PoolFormPresenter {
   }
   
   override func selectedAction() {
-    self.view.toggleSpinner(value: true)
-    self.view.toggleInteraction(value: false)
-    let model = self.model as! PoolModel
-    API.updatePool(poolId: model.id!, poolName: model.name!, goalAmountValue: model.goalAmountValue, completion: { [unowned self] pool in
-      self.view.toggleSpinner(value: false)
-      self.view.toggleInteraction(value: true)
-      self.router.popViewController(animated: true)
-    })
+    let invalidations = self.getInvalidations()
+    if invalidations.isEmpty {
+      self.view.toggleSpinner(value: true)
+      self.view.toggleInteraction(value: false)
+      let model = self.model as! PoolModel
+      API.updatePool(poolId: model.id!, poolName: model.name!, goalAmountValue: model.goalAmountValue, completion: { [unowned self] pool in
+        self.view.toggleSpinner(value: false)
+        self.view.toggleInteraction(value: true)
+        self.router.popViewController(animated: true)
+      })
+    } else {
+      invalidations.forEach { self.view.shakeField(at: $0.rawValue )}
+    }
   }
 }
 

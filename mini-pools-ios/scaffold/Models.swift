@@ -14,12 +14,16 @@ protocol AbstractPoolModel {
   var id: Int? { get set }
   var name: String? { get set }
   var goalAmountValue: Int? { get set }
+  var contributionsSum: Int { get }
 }
 
 struct NewPoolModel: AbstractPoolModel {
   var id: Int?
   var name: String?
   var goalAmountValue: Int?
+  var contributionsSum: Int {
+    return 0
+  }
 }
 
 struct PoolModel: AbstractPoolModel {

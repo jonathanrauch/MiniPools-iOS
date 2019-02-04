@@ -31,6 +31,14 @@ class DateUtil {
   }
 }
 
+extension UINavigationController {
+  func popAndPush(_ vc: UIViewController, animated: Bool) {
+    var viewControllers = self.viewControllers
+    viewControllers[viewControllers.count - 1] = vc
+    setViewControllers(viewControllers, animated: animated)
+  }
+}
+
 extension UIView {
   func shake() {
     let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")

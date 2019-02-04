@@ -78,7 +78,11 @@ class CreatePoolPresenter: PoolFormPresenter {
     API.createPool(poolName: model.name!, goalAmountValue: model.goalAmountValue, completion: { [unowned self] pool in
       self.view.toggleSpinner(value: false)
       self.view.toggleInteraction(value: true)
-      self.router.popViewController(animated: true)
+      let model = pool
+      let view = DetailsViewController()
+      let presenter = PoolPresenter(view: view, model: model, router: self.router)
+      view.presenter = presenter
+      self.router.popAndPush(view, animated: true)
     })
   }
 }

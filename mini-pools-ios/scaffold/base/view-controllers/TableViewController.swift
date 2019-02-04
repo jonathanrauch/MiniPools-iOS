@@ -94,7 +94,9 @@ class TableViewController: UIViewController, UISearchBarDelegate, UITableViewDel
   }
   
   func refreshTable() {
-    self.tableView.reloadData()
+    let range = NSMakeRange(0, self.tableView.numberOfSections)
+    let sections = NSIndexSet(indexesIn: range)
+    self.tableView.reloadSections(sections as IndexSet, with: .automatic)
   }
 
   // MARK - UISearchBarDelegate

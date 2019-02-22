@@ -65,17 +65,31 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   }
   
   func renderUpdatedPools(pools: [PoolModel]) {
-    let diff = sequenceDiff(self.pools, pools, with: { (a,b) in a.id == b.id })
+    let diff = sequenceDiff(
+      self.pools,
+      pools,
+      with: { (a,b) in a.id == b.id },
+      and: { (a, b) in a.name == b.name && a.contributionsSum == b.contributionsSum })
     let deletedIndexPaths = diff.removed.map { (index,_) in IndexPath(row: index, section: 0) }
-    let insertedIndexPath = diff.inserted.map { (index,_) in IndexPath(row: index, section: 0) }
+    let insertedIndexPaths = diff.inserted.map { (index,_) in IndexPath(row: index, section: 0) }
+    let updatedIndexPaths = diff.updated.map { (index,_, _) in IndexPath(row: index, section: 0) }
     
     self.pools = pools
     self.filteredPools = pools
     
     tableView.performBatchUpdates({
       tableView.deleteRows(at: deletedIndexPaths, with: .automatic)
-      tableView.insertRows(at: insertedIndexPath, with: .automatic)
+      tableView.insertRows(at: insertedIndexPaths, with: .automatic)
+      setUpdatedCells(updatedIndexPaths: updatedIndexPaths)
     }, completion: nil)
+  }
+  
+  func setUpdatedCells(updatedIndexPaths: [IndexPath]) {
+    tableView.indexPathsForVisibleRows?.forEach({ (indexPath) in
+      if let cell = tableView.cellForRow(at: indexPath) as? PoolTableViewCell {
+        cell.updated = updatedIndexPaths.contains(indexPath)
+      }
+    })
   }
   
   // MARK - UISearchBarDelegate
@@ -97,6 +111,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     let poolVC = PoolViewController()
     poolVC.pool = filteredPools[indexPath.row]
     tableView.deselectRow(at: indexPath, animated: true)
+    setUpdatedCells(updatedIndexPaths: [])
     self.navigationController?.pushViewController(poolVC, animated: true)
   }
   

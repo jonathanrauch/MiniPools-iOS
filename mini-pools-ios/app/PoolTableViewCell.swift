@@ -20,6 +20,14 @@ class PoolTableViewCell: UITableViewCell {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  var updated = false {
+    didSet {
+      if oldValue != updated {
+        backgroundColor = updated ? UIColor(red:0.77, green:0.84, blue:1.00, alpha:1.0) : nil
+      }
+    }
+  }
 
   func render(pool: PoolModel) {
     textLabel?.text = pool.name

@@ -17,6 +17,8 @@ class PoolViewController: UIViewController {
   private let deleteButton = UIButton(type: .system)
   private let editButton = UIButton(type: .system)
   
+  var pool: PoolModel?
+  
   override func loadView() {
     super.loadView()
     
@@ -66,10 +68,18 @@ class PoolViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.title = "" // IMPLEMENT (pool name)
     
-    self.nameLabel.text = "pool" // IMPLEMENT (pool name)
-    self.amountLabel.text = "$0 / $0" // IMPLEMENT (accumulated amount + goal)
+    if let pool = self.pool {
+      title = pool.name // IMPLEMENT (pool name)
+      
+      nameLabel.text = pool.name // IMPLEMENT (pool name)
+      // IMPLEMENT (accumulated amount + goal)
+      if let goalAmount = pool.goalAmountValue {
+        amountLabel.text = "$\(pool.contributionsSum) / $\(goalAmount)"
+      } else {
+        amountLabel.text = "$\(pool.contributionsSum)"
+      }
+    }
   }
   
   // MARK - UIButton handlers

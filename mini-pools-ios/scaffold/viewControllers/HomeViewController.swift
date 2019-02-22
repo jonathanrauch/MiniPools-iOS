@@ -15,6 +15,8 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   
   private let searchBar = UISearchBar()
   private let tableView = UITableView()
+  private var pools = [PoolModel]()
+  private var filteredPools = [PoolModel]()
   
   override func loadView() {
     super.loadView()
@@ -52,31 +54,56 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     // IMPLEMENT (fetch and render pools, show ios top-bar activity indicator while fetching - `UIApplication.shared.isNetworkActivityIndicatorVisible = value`)
+    
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    API.fetchPools { (pools) in
+      UIApplication.shared.isNetworkActivityIndicatorVisible = false
+      self.pools = pools
+      self.filteredPools = pools
+      self.tableView.reloadData()
+    }
   }
   
   // MARK - UISearchBarDelegate
   
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     // IMPLEMENT (filtering by pool name)
+    filteredPools = searchText.isEmpty ? pools : pools.filter { (item: PoolModel) -> Bool in
+      // Simple contains case-insensitive search
+      return item.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+    }
+    
+    tableView.reloadData()
   }
   
   // MARK - UITableViewDelegate
   
-  func tableView(_tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     // IMPLEMENT (push pool page to navigation stack)
+    let poolVC = PoolViewController()
+    poolVC.pool = filteredPools[indexPath.row]
+    tableView.deselectRow(at: indexPath, animated: true)
+    self.navigationController?.pushViewController(poolVC, animated: true)
   }
   
   // MARK - UITableViewDataSource
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // IMPLEMENT (pools count)
-    return 0
+    return filteredPools.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "poolCell")
-    cell.textLabel?.text = "pool" // IMPLEMENT (pool name)
-    cell.detailTextLabel?.text = "$0.00" // IMPLEMENT (pool amount)
+    // IMPLEMENT (pool name)
+    let pool = filteredPools[indexPath.row]
+    cell.textLabel?.text = pool.name
+    // IMPLEMENT (pool amount)
+    if let goalAmount = pool.goalAmountValue {
+      cell.detailTextLabel?.text = "$\(pool.contributionsSum) / $\(goalAmount)"
+    } else {
+      cell.detailTextLabel?.text = "$\(pool.contributionsSum)"
+    }
     return cell
   }
   

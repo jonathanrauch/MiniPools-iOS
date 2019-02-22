@@ -49,6 +49,8 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     self.searchBar.delegate = self
     self.tableView.delegate = self
     self.tableView.dataSource = self
+    
+    tableView.register(PoolTableViewCell.self, forCellReuseIdentifier: PoolTableViewCell.defaultReuseIdentifier)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -94,16 +96,9 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "poolCell")
-    // IMPLEMENT (pool name)
-    let pool = filteredPools[indexPath.row]
-    cell.textLabel?.text = pool.name
-    // IMPLEMENT (pool amount)
-    if let goalAmount = pool.goalAmountValue {
-      cell.detailTextLabel?.text = "$\(pool.contributionsSum) / $\(goalAmount)"
-    } else {
-      cell.detailTextLabel?.text = "$\(pool.contributionsSum)"
-    }
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: PoolTableViewCell.defaultReuseIdentifier, for: indexPath) as? PoolTableViewCell
+      else { return UITableViewCell() }
+    cell.render(pool: filteredPools[indexPath.row])
     return cell
   }
   

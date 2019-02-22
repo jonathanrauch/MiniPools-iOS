@@ -65,9 +65,17 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
   }
   
   func renderUpdatedPools(pools: [PoolModel]) {
+    let diff = sequenceDiff(self.pools, pools, with: { (a,b) in a.id == b.id })
+    let deletedIndexPaths = diff.removed.map { (index,_) in IndexPath(row: index, section: 0) }
+    let insertedIndexPath = diff.inserted.map { (index,_) in IndexPath(row: index, section: 0) }
+    
     self.pools = pools
     self.filteredPools = pools
-    self.tableView.reloadData()
+    
+    tableView.performBatchUpdates({
+      tableView.deleteRows(at: deletedIndexPaths, with: .automatic)
+      tableView.insertRows(at: insertedIndexPath, with: .automatic)
+    }, completion: nil)
   }
   
   // MARK - UISearchBarDelegate

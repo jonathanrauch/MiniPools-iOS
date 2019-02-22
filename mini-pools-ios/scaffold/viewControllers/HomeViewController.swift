@@ -60,10 +60,14 @@ class HomeViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     UIApplication.shared.isNetworkActivityIndicatorVisible = true
     API.fetchPools { (pools) in
       UIApplication.shared.isNetworkActivityIndicatorVisible = false
-      self.pools = pools
-      self.filteredPools = pools
-      self.tableView.reloadData()
+      self.renderUpdatedPools(pools: pools)
     }
+  }
+  
+  func renderUpdatedPools(pools: [PoolModel]) {
+    self.pools = pools
+    self.filteredPools = pools
+    self.tableView.reloadData()
   }
   
   // MARK - UISearchBarDelegate
